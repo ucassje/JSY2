@@ -109,6 +109,6 @@ for r in range(Nr):
    plt.xlim([-Mv, Mv])
    plt.rc('font', size=8)
    plt.tick_params(labelsize=8)
-   plt.savefig(f'{path_current}17/shift/1D{r}.png')
+   plt.savefig(f'{path_current}17/1D_s{r}.png')
    plt.clf()
    plt.close()
