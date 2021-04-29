@@ -22,8 +22,8 @@ Nv=30
 Nv2=30+2*30-2  #velocity step number
 i_solar_r=5 #10
 f_solar_r=20 #30
-path_home="/Users/user/Desktop/JSY_Code/"
-path_lab="/disk/plasma4/syj2/Code/JSY_Code/JSY_Code/"
+path_home="/Users/user/Desktop/JSY2/"
+path_lab="/disk/plasma4/syj2/Code/JSY2/"
 # path_current=path_home
 path_current=path_lab
 def n_0(r):
@@ -109,6 +109,6 @@ for r in range(Nr):
    plt.xlim([-Mv, Mv])
    plt.rc('font', size=8)
    plt.tick_params(labelsize=8)
-   plt.savefig(f'{path_current}17/1D_s{r}.png')
+   plt.savefig(f'{path_current}17/shift/1D{r}.png')
    plt.clf()
    plt.close()
