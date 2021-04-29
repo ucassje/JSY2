@@ -83,3 +83,5 @@ for r in range(Nr):
                         elif (i-1)%3==0:
                                 print(i)
                                 f_shift[r*(Nv)*(Nv)+j*Nv+i]=f_1[r*(Nv)*(Nv)+j*Nv+(i-1)//3]+(1/3)*(f_1[r*(Nv)*(Nv)+j*Nv+(i+2)//3]-f_1[r*(Nv)*(Nv)+j*Nv+(i-1)//3])
+                        elif (i-2)%3==0:
+                                f_shift[r*(Nv)*(Nv)+j*Nv+i]=f_1[r*(Nv)*(Nv)+j*Nv+(i-2)//3]+(2/3)*(f_1[r*(Nv)*(Nv)+j*Nv+(i+1)//3]-f_1[r*(Nv)*(Nv)+j*Nv+(i-2)//3])
