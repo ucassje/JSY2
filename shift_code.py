@@ -90,7 +90,7 @@ for r in range(Nr):
 solu2=np.zeros(shape = (Nv2))
 for r in range(Nr):
    for i in range(Nv2):
-        solu2[i]=np.log10(f_shift[(r)*(Nv)*(Nv)+(15)*Nv+i]/np.max(f_1))
+        solu2[i]=np.log10(f_shift[(r)*(Nv)*(Nv2)+(15)*Nv+i]/np.max(f_1))
    fig = plt.figure()
    fig.set_dpi(500)
    plt.plot(pal_v,solu2,color='k',label=r'$r/r_s=$' "%.2f" % z[r]);
