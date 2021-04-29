@@ -74,7 +74,7 @@ print(((f_solar_r-i_solar_r)/U_f)/delt)
 
 f_1 = np.load('data_next.npy')
 
-f_shift=np.zeros(shape = (Nr*Nv**2, 1))
+f_shift=np.zeros(shape = (Nr*Nv*Nv2, 1))
 for r in range(Nr):
         for j in range(Nv):
                 for i in range(Nv2):
