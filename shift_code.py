@@ -87,7 +87,7 @@ for r in range(Nr):
                                 f_shift[r*(Nv)*(Nv)+j*Nv+i]=f_1[r*(Nv)*(Nv)+j*Nv+(i-2)//3]+(2/3)*(f_1[r*(Nv)*(Nv)+j*Nv+(i+1)//3]-f_1[r*(Nv)*(Nv)+j*Nv+(i-2)//3])
 
 
-
+solu2=np.zeros(shape = (Nv2))
 for r in range(Nr):
    for i in range(Nv2):
         solu2[i]=np.log10(f_shift[(r)*(Nv)*(Nv)+(15)*Nv+i]/np.max(f_1))
