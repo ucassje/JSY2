@@ -79,4 +79,5 @@ for r in range(Nr):
         for j in range(Nv):
                 for i in range(Nv2):
                         if type(i//3)==int:
+                                print(i)
                                 f_shift[r*(Nv)*(Nv)+j*Nv+i]=f_1[r*(Nv)*(Nv)+j*Nv+i//3]
