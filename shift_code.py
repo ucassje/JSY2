@@ -18,7 +18,8 @@ from lmfit import Parameters, fit_report, minimize
 #from lmfit import Model
 import lmfit
 
-Nv=30+2*30-2  #velocity step number
+Nv=30
+Nv2=30+2*30-2  #velocity step number
 i_solar_r=5 #10
 f_solar_r=20 #30
 path_home="/Users/user/Desktop/JSY_Code/"
@@ -76,6 +77,6 @@ f_1 = np.load('data_next.npy')
 f_shift=np.zeros(shape = (Nr*Nv**2, 1))
 for r in range(Nr):
         for j in range(Nv):
-                for i in range(Nv):
+                for i in range(Nv2):
                         if type(i//3)==int:
                                 f_shift[r*(Nv)*(Nv)+j*Nv+i]=f_1[r*(Nv)*(Nv)+j*Nv+i//3]
