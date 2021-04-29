@@ -85,3 +85,30 @@ for r in range(Nr):
                         elif (i-2)%3==0:
                                 print(i)
                                 f_shift[r*(Nv)*(Nv)+j*Nv+i]=f_1[r*(Nv)*(Nv)+j*Nv+(i-2)//3]+(2/3)*(f_1[r*(Nv)*(Nv)+j*Nv+(i+1)//3]-f_1[r*(Nv)*(Nv)+j*Nv+(i-2)//3])
+
+
+
+for r in range(Nr):
+   for i in range(Nv2):
+        solu2[i]=np.log10(f_shift[(r)*(Nv)*(Nv)+(15)*Nv+i]/np.max(f_1))
+   fig = plt.figure()
+   fig.set_dpi(500)
+   plt.plot(pal_v,solu2,color='k',label=r'$r/r_s=$' "%.2f" % z[r]);
+   plt.legend(loc='upper right')
+   plt.grid()
+   ax = plt.gca()
+   ax.spines['left'].set_position('center')
+   ax.spines['right'].set_color('none')
+   ax.spines['top'].set_color('none')
+   ax.xaxis.set_ticks_position('bottom')
+   ax.yaxis.set_ticks_position('left')
+   ax.set_yticks([-8,-6,-4,-2,-0])
+   plt.text(-2*delv,-8.7,r'$\mathcal{v}_\parallel/\mathcal{v}_{Ae0}$', fontsize=12)
+   plt.text(-2*delv,2*delv,r'$Log(F/F_{MAX})$', fontsize=12)
+   plt.ylim([-8, 0])
+   plt.xlim([-Mv, Mv])
+   plt.rc('font', size=8)
+   plt.tick_params(labelsize=8)
+   plt.savefig(f'{path_current}17/shift/1D{r}.png')
+   plt.clf()
+   plt.close()
