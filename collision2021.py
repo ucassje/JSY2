@@ -586,7 +586,7 @@ kl=50
 
 np.save('data_pre.npy', f_1)
 
-timestep=10 #948
+timestep=948 #948
 Normvalue=np.zeros(shape = (timestep))
 Normvalue_bulk=np.zeros(shape = (timestep))
 for k in range(timestep):
@@ -686,7 +686,7 @@ for k in range(timestep):
                 for j in range(Nv):
                         for i in range(Nv):
                                 if r==Nr-2:
-                                        f_temp4[(r+1)*(Nv)*(Nv)+j*Nv+i]=f_1[(r)*(Nv)*(Nv)+j*Nv+i]*ratio_r[r*(Nv)*(Nv)+j*Nv+i]**(-1) #2*f_temp4[(r)*(Nv)*(Nv)+(j)*Nv+i]*ratio_r[r*(Nv)*(Nv)+j*Nv+i]**(-1)-f_temp4[(r-1)*(Nv)*(Nv)+(j)*Nv+i]*ratio_r[(r-1)*(Nv)*(Nv)+j*Nv+i]**(-1)*ratio_r[r*(Nv)*(Nv)+j*Nv+i]**(-1)  
+                                        f_temp4[(r+1)*(Nv)*(Nv)+j*Nv+i]=f_temp4[(r+1)*(Nv)*(Nv)+j*Nv+i]#f_1[(r)*(Nv)*(Nv)+j*Nv+i]*ratio_r[r*(Nv)*(Nv)+j*Nv+i]**(-1) #2*f_temp4[(r)*(Nv)*(Nv)+(j)*Nv+i]*ratio_r[r*(Nv)*(Nv)+j*Nv+i]**(-1)-f_temp4[(r-1)*(Nv)*(Nv)+(j)*Nv+i]*ratio_r[(r-1)*(Nv)*(Nv)+j*Nv+i]**(-1)*ratio_r[r*(Nv)*(Nv)+j*Nv+i]**(-1)  
                                 else:
                                         f_temp4[(r+1)*(Nv)*(Nv)+j*Nv+i]=0.5*(0.5*(f_1[(r)*(Nv)*(Nv)+j*Nv+i]*ratio_r[r*(Nv)*(Nv)+j*Nv+i]**(-1)+f_1[(r+1)*(Nv)*(Nv)+j*Nv+i])+0.5*(f_1[(r+1)*(Nv)*(Nv)+j*Nv+i]+f_1[(r+2)*(Nv)*(Nv)+j*Nv+i]*ratio_r[(r+1)*(Nv)*(Nv)+j*Nv+i]))     #0.5*(f_1[(r)*(Nv)*(Nv)+j*Nv+i]*ratio_r[r*(Nv)*(Nv)+j*Nv+i]**(-1)+f_1[(r+2)*(Nv)*(Nv)+j*Nv+i]*ratio_r[(r+1)*(Nv)*(Nv)+j*Nv+i])                                
     f_1[:,:]=f_temp4[:,:]
