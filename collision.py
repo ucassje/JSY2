@@ -609,7 +609,7 @@ def Matrix_QQ(R):
 			    AA[a*Nv:(a+1)*Nv,b*Nv:(b+1)*Nv]=Matrix_Q(R,a)
     return AA
 
-for p in range(40):
+for p in range(90):
         print(p)
 
         Density_pre=np.zeros(shape = (Nr))
