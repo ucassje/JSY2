@@ -167,7 +167,27 @@ for r in range(Nr):
                       tempBulk=tempBulk
    Bulk_next[r]=tempBulk/((r_s**3)*Density_next[r])
 
+Temperature_pal=np.zeros(shape = (Nr))
+for r in range(Nr):
+       temptemp=0
+       for j in range(Nv):
+          for i in range(Nv):
+                  if per_v[j]<0:
+                          temptemp=temptemp
+                  else:
+                          temptemp=temptemp+2*np.pi*(pal_v[i]**2)*f_1[r*(Nv)*(Nv)+j*Nv+i]*abs(per_v[j])*(pal_v[1]-pal_v[0])**2
+       Temperature_pal[r]=v_Ae_0**2*Me*temptemp/((r_s**3)*Density_next[r]*Bol_k)
 
+Temperature_per=np.zeros(shape = (Nr))
+for r in range(Nr):
+       temptemp=0
+       for j in range(Nv):
+          for i in range(Nv):
+                  if per_v[j]<0:
+                          temptemp=temptemp
+                  else:
+                          temptemp=temptemp+2*np.pi*(per_v[j]**2)*f_1[r*(Nv)*(Nv)+j*Nv+i]*abs(per_v[j])*(pal_v[1]-pal_v[0])**2
+       Temperature_per[r]=v_Ae_0**2*Me*temptemp/(2*(r_s**3)*Density_next[r]*Bol_k)    
 
 #def temperature_pal(r):
 #        l=0
@@ -399,7 +419,7 @@ def electric(x):
         for r in range(Nr):
                 if abs(x-z[r])<0.5*delz:
                         l=r
-        return U_solar(x)*dU_solar(x)/(cos(x)**2)+(U_solar(x)**2/cos(x))*dcos_1(x)+(1/v_Ae_0**2)*(Bol_k)/(Me*n(x))*(n(x)*temperature(x)*lntemperature(x)+temperature(x)*n(x)*lnn(x))-(1/v_Ae_0**2)*(Bol_k)/(2*Me)*dlnB(x)*temperature(x)+(1/v_Ae_0**2)*(Bol_k)/(2*Me)*dlnB(x)*temperature(x)+(1/v_Ae_0**2)*(2*Bol_k)/(Me*x)*temperature(x)+(1/Density_next[l])*(Density_next[l]*Bulk_next[l]-Density_pre[l]*Bulk_pre[l])/(10*delt)
+        return U_solar(x)*dU_solar(x)/(cos(x)**2)+(U_solar(x)**2/cos(x))*dcos_1(x)+(1/v_Ae_0**2)*(Bol_k)/(Me*Density_next[l])*(Density_next[l]*Temperature_pal[l]-Density_next[l-1]*Temperature_pal[l-1])/delz-(1/v_Ae_0**2)*(Bol_k)/(Me)*dlnB(x)*Temperature_pal[l]+(1/v_Ae_0**2)*(Bol_k)/(2*Me)*dlnB(x)*Temperature_per[l]+(1/v_Ae_0**2)*(2*Bol_k)/(Me*x)*Temperature_pal[r]+(1/Density_next[l])*(Density_next[l]*Bulk_next[l]-Density_pre[l]*Bulk_pre[l])/(10*delt)
 
 #for R in range(Nr):
 #        print(electric(z[R]))
