@@ -18,7 +18,7 @@ from lmfit import Parameters, fit_report, minimize
 #from lmfit import Model
 import lmfit
 
-Nv=30  #velocity step number
+Nv=40  #velocity step number
 i_solar_r=5 #10
 f_solar_r=20 #30
 path_home="/Users/user/Desktop/JSY2/"
@@ -549,7 +549,7 @@ for a in range(Nr-1):
 	for b in range(Nr-1):
 		if a==b:
 			AAA[(a)*(Nv*Nv):(a+1)*(Nv*Nv),(b+1)*(Nv*Nv):(b+2)*(Nv*Nv)]=Matrix_alphaA(a)
-AAA_1 = inv(AAA)
+AAA_1 = np.linalg.inv(AAA)#inv(AAA)
 del AAA
 
 QQQ=np.zeros(((Nr)*(Nv)**2,(Nr)*(Nv)**2))
@@ -586,7 +586,7 @@ kl=50
 
 np.save('data_pre.npy', f_1)
 
-timestep=910 #948
+timestep=10 #948
 Normvalue=np.zeros(shape = (timestep))
 Normvalue_bulk=np.zeros(shape = (timestep))
 for k in range(timestep):
