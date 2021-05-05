@@ -609,7 +609,7 @@ def Matrix_QQ(R):
 			    AA[a*Nv:(a+1)*Nv,b*Nv:(b+1)*Nv]=Matrix_Q(R,a)
     return AA
 
-for p in range(10):
+for p in range(45):
         print(p)
         f_pre = np.load('data_pre.npy')
         f_1 = np.load('data_next.npy')
