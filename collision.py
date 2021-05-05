@@ -611,7 +611,8 @@ def Matrix_QQ(R):
 
 for p in range(10):
         print(p)
-
+        f_pre = np.load('data_pre.npy')
+        f_1 = np.load('data_next.npy')
         Density_pre=np.zeros(shape = (Nr))
         for r in range(Nr):
            tempDensity=0
@@ -738,8 +739,8 @@ for p in range(10):
         f_temp=np.zeros(shape = (Nr*Nv**2, 1))
         f_temp[:,:]=f_1[:,:]
         kl=50
-
-#np.save('data_pre.npy', f_1)
+        
+        np.save('data_pre.npy', f_1)
 
         timestep=10 #700
         Normvalue=np.zeros(shape = (timestep))
@@ -810,7 +811,7 @@ for p in range(10):
                                             if f_1[(r)*(Nv)*(Nv)+j*Nv+i]<0:
                                                     f_1[(r)*(Nv)*(Nv)+j*Nv+i]=mini
 
-            
+        np.save('data_next.npy', f_1)
 
 
 
