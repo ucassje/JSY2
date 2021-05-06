@@ -609,7 +609,7 @@ def Matrix_QQ(R):
 			    AA[a*Nv:(a+1)*Nv,b*Nv:(b+1)*Nv]=Matrix_Q(R,a)
     return AA
 
-for p in range(10):
+for p in range(110):
         print(p)
         f_pre = np.load('data_pre.npy')
         f_1 = np.load('data_next.npy')
@@ -742,7 +742,7 @@ for p in range(10):
         
         np.save('data_pre.npy', f_1)
 
-        timestep=10 #700
+        timestep=5 #700
         Normvalue=np.zeros(shape = (timestep))
         Normvalue_bulk=np.zeros(shape = (timestep))
         for k in range(timestep):
