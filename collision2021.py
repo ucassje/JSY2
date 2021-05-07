@@ -51,7 +51,7 @@ print(delz)
 Mt=0.01
 Nt=3
 t=np.linspace(0, Mt, Nt-1)
-delt=(t[1]-t[0])            #time step
+delt=0.5*(t[1]-t[0])            #time step
 print(delt)
 Fv=delt/delv
 Fvv=delt/(delv)**2
@@ -586,7 +586,7 @@ kl=50
 
 np.save('data_pre.npy', f_1)
 
-timestep=330#448 #948
+timestep=660#448 #948
 Normvalue=np.zeros(shape = (timestep))
 Normvalue_bulk=np.zeros(shape = (timestep))
 for k in range(timestep):
