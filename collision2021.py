@@ -586,7 +586,7 @@ kl=50
 
 np.save('data_pre.npy', f_1)
 
-timestep=660#448 #948
+timestep=1#448 #948
 Normvalue=np.zeros(shape = (timestep))
 Normvalue_bulk=np.zeros(shape = (timestep))
 for k in range(timestep):
@@ -985,22 +985,22 @@ solu4=np.zeros(shape = (Nv))
 cont_lev = np.linspace(-10,0,25)
 difference=np.zeros(shape = ((Nr)*(Nv)*(Nv), 1))
 
-o=np.linspace(1, timestep, timestep)
+#o=np.linspace(1, timestep, timestep)
 
-plt.figure(figsize=(20,15))
-plt.grid()
-ax = plt.gca()
-plt.rc('font', size=35)
-plt.tick_params(labelsize=40)
-plt.ticklabel_format(style='sci', axis='y', scilimits=(0,0))
-ax.set_xlim([o[0],o[timestep-1]])
-ax.set_ylim([10**(-6),10**(-3)])
-ax.set_xlabel(r'$t$', fontsize=28)
-ax.set_ylabel(r'$norm$', fontsize=28)
-ax.plot(o,Normvalue,linewidth=3.0, color='k');
-plt.savefig(f'{path_current}figure/norm.png')
-plt.clf()
-plt.close()
+#plt.figure(figsize=(20,15))
+#plt.grid()
+#ax = plt.gca()
+#plt.rc('font', size=35)
+#plt.tick_params(labelsize=40)
+#plt.ticklabel_format(style='sci', axis='y', scilimits=(0,0))
+#ax.set_xlim([o[0],o[timestep-1]])
+#ax.set_ylim([10**(-6),10**(-3)])
+#ax.set_xlabel(r'$t$', fontsize=28)
+#ax.set_ylabel(r'$norm$', fontsize=28)
+#ax.plot(o,Normvalue,linewidth=3.0, color='k');
+#plt.savefig(f'{path_current}figure/norm.png')
+#plt.clf()
+#plt.close()
 
 #o=np.linspace(1, timestep, timestep)
 
