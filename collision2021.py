@@ -535,42 +535,23 @@ def Matrix_QQ(R):
     return AA
 
 AAA=np.zeros(((Nr)*(Nv)**2,(Nr)*(Nv)**2))
+QQQ=np.zeros(((Nr)*(Nv)**2,(Nr)*(Nv)**2))
 for a in range(Nr):
 	for b in range(Nr):
 		if a==b:
 			AAA[a*(Nv*Nv):(a+1)*(Nv*Nv),b*(Nv*Nv):(b+1)*(Nv*Nv)]=Matrix_AA(a)
-
-for a in range(Nr-1):
-	for b in range(Nr-1):
-		if a==b:
-			AAA[(a+1)*(Nv*Nv):(a+2)*(Nv*Nv),(b)*(Nv*Nv):(b+1)*(Nv*Nv)]=-Matrix_alphaA(a+1)
-
-for a in range(Nr-1):
-	for b in range(Nr-1):
-		if a==b:
-			AAA[(a)*(Nv*Nv):(a+1)*(Nv*Nv),(b+1)*(Nv*Nv):(b+2)*(Nv*Nv)]=Matrix_alphaA(a)
-AAA_1 = inv(AAA)
-del AAA
-
-QQQ=np.zeros(((Nr)*(Nv)**2,(Nr)*(Nv)**2))
-
-
-
-for a in range(Nr):
-	for b in range(Nr):
-		if a==b:
 			QQQ[a*(Nv*Nv):(a+1)*(Nv*Nv),b*(Nv*Nv):(b+1)*(Nv*Nv)]=Matrix_QQ(a)
 
 for a in range(Nr-1):
 	for b in range(Nr-1):
 		if a==b:
+			AAA[(a+1)*(Nv*Nv):(a+2)*(Nv*Nv),(b)*(Nv*Nv):(b+1)*(Nv*Nv)]=-Matrix_alphaA(a+1)
+			AAA[(a)*(Nv*Nv):(a+1)*(Nv*Nv),(b+1)*(Nv*Nv):(b+2)*(Nv*Nv)]=Matrix_alphaA(a)
 			QQQ[a*(Nv*Nv):(a+1)*(Nv*Nv),(b+1)*(Nv*Nv):(b+2)*(Nv*Nv)]=-Matrix_alphaA(a)
-
-for a in range(Nr-1):
-	for b in range(Nr-1):
-		if a==b:
 			QQQ[(a+1)*(Nv*Nv):(a+2)*(Nv*Nv),(b)*(Nv*Nv):(b+1)*(Nv*Nv)]=Matrix_alphaA(a+1)
 
+AAA_1 = inv(AAA)
+del AAA
 AQ=dot(AAA_1,QQQ)
 del AAA_1
 del QQQ
