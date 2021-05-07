@@ -123,7 +123,7 @@ Uc=np.zeros(shape = (Nr))
 Us=np.zeros(shape = (Nr))
 kappac=np.zeros(shape = (Nr))
 kappas=np.zeros(shape = (Nr))
-
+v_Ae=np.zeros(shape = (Nr))
 
 f_1 = np.load('data_next.npy')
 for r in range(Nr):
