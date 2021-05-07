@@ -80,6 +80,9 @@ def lnn(r):
 def U_solar(r):
         return U_f*(np.exp(r/20.)-np.exp(-r/20.))/(np.exp(r/20.)+np.exp(-r/20.)) 
 
+def B(x):
+        return B_0(i_solar_r)*(i_solar_r/x)**2*(1+((x-i_solar_r)*Omega/U_solar(x))**2)**0.5
+
 def dU_solar(x):
         return U_f*(1./20.)*(2./(np.exp(x/20.)+np.exp(-x/20.)))**2
 
@@ -165,6 +168,8 @@ for r in range(Nr):
     kappac[r] = zx['kappac'].value
     kappas[r] = zx['kappas'].value
 
+    v_Ae[r]=(B(z[r])*10**(-9))/(4.*np.pi*10**(-7)*9.1094*10**(-31)*n(z[r])*10**6)**0.5
+
     fitting=np.zeros(shape = (Nv**2, 1))
     for j in range(Nv):
         for i in range(Nv):
@@ -221,7 +226,8 @@ for r in range(Nr):
     plt.text(pal_v[0],pal_v[Nv-8], r'$Us=$' "%.3f" % Us[r], fontsize=8)
     plt.text(pal_v[0],pal_v[Nv-9], r'$kappac=$' "%.3f" % kappac[r], fontsize=8)
     plt.text(pal_v[0],pal_v[Nv-10], r'$kappas=$' "%.3f" % kappas[r], fontsize=8)
-    plt.text(pal_v[0],pal_v[Nv-11], r'$reducedCS=$' "%.3f" % mi.redchi, fontsize=8)
+    plt.text(pal_v[0],pal_v[Nv-11], r'$kappas=$' "%.3f" % v_Ae[r], fontsize=8)
+    plt.text(pal_v[0],pal_v[Nv-12], r'$reducedCS=$' "%.3f" % mi.redchi, fontsize=8)
     plt.colorbar(label=r'$Log(F/F_{MAX})$')
     plt.savefig(f'{path_current}fitting/{r}.png')
     plt.clf()
@@ -343,3 +349,5 @@ plt.legend(loc='upper right')
 plt.savefig(f'{path_current}fitting/Kappa.png')
 plt.clf()
 plt.close()
+
+
