@@ -41,7 +41,7 @@ pal_v = np.linspace(-Mv, Mv, Nv)
 per_v = np.linspace(-Mv, Mv, Nv)
 delv=pal_v[1]-pal_v[0]
 print(delv)
-Nr=50      #radial step number
+Nr=30      #radial step number
 r_s=696340000.
 z=np.linspace(i_solar_r, f_solar_r, Nr)
 delz=z[1]-z[0]
@@ -122,7 +122,7 @@ kappac=np.zeros(shape = (Nr))
 kappas=np.zeros(shape = (Nr))
 
 
-f_1 = np.load('data.npy')
+f_1 = np.load('data_next.npy')
 for r in range(Nr):
     print(r)
     if r==0:
