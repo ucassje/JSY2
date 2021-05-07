@@ -31,6 +31,7 @@ def B_0(r):
         return 10*(215/r)**2
 
 v_Ae_0=(B_0(215)*10**(-9))/(4.*np.pi*10**(-7)*9.1094*10**(-31)*10*n_0(215)*10**6)**0.5
+print(v_Ae_0)
 q=1.6022*(10**(-19))
 Me=9.1094*(10**(-31))
 Mp=1.6726*(10**(-27))
@@ -226,7 +227,7 @@ for r in range(Nr):
     plt.text(pal_v[0],pal_v[Nv-8], r'$Us=$' "%.3f" % Us[r], fontsize=8)
     plt.text(pal_v[0],pal_v[Nv-9], r'$kappac=$' "%.3f" % kappac[r], fontsize=8)
     plt.text(pal_v[0],pal_v[Nv-10], r'$kappas=$' "%.3f" % kappas[r], fontsize=8)
-    plt.text(pal_v[0],pal_v[Nv-11], r'$kappas=$' "%.3f" % v_Ae[r], fontsize=8)
+    plt.text(pal_v[0],pal_v[Nv-11], r'$v_Ae=$' "%.3f" % v_Ae[r], fontsize=8)
     plt.text(pal_v[0],pal_v[Nv-12], r'$reducedCS=$' "%.3f" % mi.redchi, fontsize=8)
     plt.colorbar(label=r'$Log(F/F_{MAX})$')
     plt.savefig(f'{path_current}fitting/{r}.png')
