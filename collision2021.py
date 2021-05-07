@@ -550,7 +550,7 @@ for a in range(Nr-1):
 			QQQ[a*(Nv*Nv):(a+1)*(Nv*Nv),(b+1)*(Nv*Nv):(b+2)*(Nv*Nv)]=-Matrix_alphaA(a)
 			QQQ[(a+1)*(Nv*Nv):(a+2)*(Nv*Nv),(b)*(Nv*Nv):(b+1)*(Nv*Nv)]=Matrix_alphaA(a+1)
 
-AAA_1 = inv(AAA)
+AAA_1 = np.linalg.inv(AAA)
 del AAA
 AQ=dot(AAA_1,QQQ)
 del AAA_1
