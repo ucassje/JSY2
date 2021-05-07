@@ -127,6 +127,18 @@ kappas=np.zeros(shape = (Nr))
 v_Ae=np.zeros(shape = (Nr))
 
 f_1 = np.load('data_next.npy')
+Density=np.zeros(shape = (Nr))
+for r in range(Nr):
+   tempDensity=0
+   for j in range(Nv):
+      for i in range(Nv):
+              if per_v[j]<0:
+                      tempDensity=tempDensity
+              else:
+                      tempDensity=tempDensity+2*np.pi*f_1[r*(Nv)*(Nv)+j*Nv+i]*abs(per_v[j])*(pal_v[1]-pal_v[0])**2
+   Density[r]=tempDensity/(r_s**3)
+
+
 for r in range(Nr):
     print(r)
     if r==0:
@@ -169,7 +181,7 @@ for r in range(Nr):
     kappac[r] = zx['kappac'].value
     kappas[r] = zx['kappas'].value
 
-    v_Ae[r]=(B(z[r])*10**(-9))/(4.*np.pi*10**(-7)*9.1094*10**(-31)*n(z[r])*10**6)**0.5
+    v_Ae[r]=(B(z[r])*10**(-9))/(4.*np.pi*10**(-7)*9.1094*10**(-31)*Density[r])**0.5
 
     fitting=np.zeros(shape = (Nv**2, 1))
     for j in range(Nv):
