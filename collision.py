@@ -690,43 +690,23 @@ for p in range(100):
                 return U_solar(x)*dU_solar(x)/(cos(x)**2)+(U_solar(x)**2/cos(x))*dcos_1(x)+(1/v_Ae_0**2)*(Bol_k)/(Me*Density_next[l])*(Density_next[l]*Temperature_pal[l]-Density_next[l-1]*Temperature_pal[l-1])/delz+(1/v_Ae_0**2)*(Bol_k)/(Me)*dcos(x)/cos(x)*Temperature_pal[l]+(1/v_Ae_0**2)*(Bol_k)/(2*Me)*dlnB(x)*Temperature_per[l]+(1/v_Ae_0**2)*(2*Bol_k)/(Me*x)*Temperature_pal[r]#+(1/Density_next[l])*(Density_next[l]*Bulk_next[l]-Density_pre[l]*Bulk_pre[l])/(10*delt)+(Bulk_next[l]/cos(x))*dU_solar(x)+Bulk_next[l]*(dU_solar(x)/cos(x)+U_solar(x)*dcos_1(x))+(U_solar(x)/cos(x))*Bulk_next[l]/x+(U_solar(x)/(cos(x)*Density_next[l]))*(Density_next[l]*Bulk_next[l]-Density_next[l-1]*Bulk_next[l-1])/delz
 
         AAA=np.zeros(((Nr)*(Nv)**2,(Nr)*(Nv)**2))
+        QQQ=np.zeros(((Nr)*(Nv)**2,(Nr)*(Nv)**2))
         for a in range(Nr):
                 for b in range(Nr):
                         if a==b:
                                 AAA[a*(Nv*Nv):(a+1)*(Nv*Nv),b*(Nv*Nv):(b+1)*(Nv*Nv)]=Matrix_AA(a)
-
-        for a in range(Nr-1):
-                for b in range(Nr-1):
-                        if a==b:
-                                AAA[(a+1)*(Nv*Nv):(a+2)*(Nv*Nv),(b)*(Nv*Nv):(b+1)*(Nv*Nv)]=-Matrix_alphaA(a+1)
-
-        for a in range(Nr-1):
-                for b in range(Nr-1):
-                        if a==b:
-                                AAA[(a)*(Nv*Nv):(a+1)*(Nv*Nv),(b+1)*(Nv*Nv):(b+2)*(Nv*Nv)]=Matrix_alphaA(a)
-        AAA_1 = inv(AAA)
-        del AAA
-
-
-        QQQ=np.zeros(((Nr)*(Nv)**2,(Nr)*(Nv)**2))
-
-
-
-        for a in range(Nr):
-                for b in range(Nr):
-                        if a==b:
                                 QQQ[a*(Nv*Nv):(a+1)*(Nv*Nv),b*(Nv*Nv):(b+1)*(Nv*Nv)]=Matrix_QQ(a)
 
         for a in range(Nr-1):
                 for b in range(Nr-1):
                         if a==b:
+                                AAA[(a+1)*(Nv*Nv):(a+2)*(Nv*Nv),(b)*(Nv*Nv):(b+1)*(Nv*Nv)]=-Matrix_alphaA(a+1)
+                                AAA[(a)*(Nv*Nv):(a+1)*(Nv*Nv),(b+1)*(Nv*Nv):(b+2)*(Nv*Nv)]=Matrix_alphaA(a)
                                 QQQ[a*(Nv*Nv):(a+1)*(Nv*Nv),(b+1)*(Nv*Nv):(b+2)*(Nv*Nv)]=-Matrix_alphaA(a)
-
-        for a in range(Nr-1):
-                for b in range(Nr-1):
-                        if a==b:
                                 QQQ[(a+1)*(Nv*Nv):(a+2)*(Nv*Nv),(b)*(Nv*Nv):(b+1)*(Nv*Nv)]=Matrix_alphaA(a+1)
 
+        AAA_1 = np.linalg.inv(AAA)
+        del AAA
         AQ=dot(AAA_1,QQQ)
         del AAA_1
         del QQQ
