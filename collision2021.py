@@ -956,8 +956,7 @@ for k in range(timestep):
     for R in range(Nr):
             for J in range(Nv):
                     for I in range(Nv):
-                            if np.log10(f_next[R*(Nv)*(Nv)+J*Nv+I]/np.max(f_next))>-5:
-                                    norm=norm+abs((f_next[R*(Nv)*(Nv)+J*Nv+I]/np.max(f_next)-f_pre[R*(Nv)*(Nv)+J*Nv+I]/np.max(f_next)))**2
+                            norm=norm+abs((f_next[R*(Nv)*(Nv)+J*Nv+I]/np.max(f_next)-f_pre[R*(Nv)*(Nv)+J*Nv+I]/np.max(f_pre)))**2
     Normvalue[k]=norm**0.5
     print(norm**0.5)
 
@@ -1004,7 +1003,7 @@ plt.rc('font', size=35)
 plt.tick_params(labelsize=40)
 plt.ticklabel_format(style='sci', axis='y', scilimits=(0,0))
 ax.set_xlim([o[0],o[timestep-1]])
-ax.set_ylim([10**(-6),10**(-3)])
+ax.set_ylim([10**(-5),10**(-2)])
 ax.set_xlabel(r'$t$', fontsize=28)
 ax.set_ylabel(r'$norm$', fontsize=28)
 ax.plot(o,Normvalue,linewidth=3.0, color='k');
