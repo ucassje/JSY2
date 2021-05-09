@@ -567,7 +567,7 @@ kl=50
 
 np.save('data_pre.npy', f_1)
 
-timestep=1#448 #948
+timestep=500#448 #948
 Normvalue=np.zeros(shape = (timestep))
 Normvalue_bulk=np.zeros(shape = (timestep))
 for k in range(timestep):
@@ -743,10 +743,40 @@ for k in range(timestep):
                                             f_1[(r)*(Nv)*(Nv)+j*Nv+i]=mini
 
     
+    Density_next=np.zeros(shape = (Nr))
+    for r in range(Nr):
+        tempDensity=0
+        for j in range(Nv):
+            for i in range(Nv):
+                if per_v[j]<0:
+                      tempDensity=tempDensity
+                else:
+                      tempDensity=tempDensity+2*np.pi*f_1[r*(Nv)*(Nv)+j*Nv+i]*abs(per_v[j])*(pal_v[1]-pal_v[0])**2
+        Density_next[r]=tempDensity/(r_s**3)
 
 
 
-    
+    Bulk_next=np.zeros(shape = (Nr))
+    for r in range(Nr):
+        tempBulk=0
+        for j in range(Nv):
+            for i in range(Nv):
+                if per_v[j]>=0:
+                      tempBulk=tempBulk+2*np.pi*pal_v[i]*f_1[r*(Nv)*(Nv)+j*Nv+i]*abs(per_v[j])*(pal_v[1]-pal_v[0])**2
+                else:
+                      tempBulk=tempBulk
+        Bulk_next[r]=tempBulk/((r_s**3)*Density_next[r])
+
+
+    f_temp6=np.zeros(shape = (Nr*Nv**2, 1))
+    f_temp6[:,:]=f_1[:,:]
+    for r in range(Nr):
+        for j in range(Nv):
+            for i in range(Nv):
+                    if i==0 or i==Nv-1:
+                            f_1[r*(Nv)*(Nv)+j*Nv+i]=f_1[r*(Nv)*(Nv)+j*Nv+i]
+                    else:
+                            f_1[r*(Nv)*(Nv)+j*Nv+i]=f_temp6[r*(Nv)*(Nv)+j*Nv+i]+Bulk_next[r]*(f_temp6[r*(Nv)*(Nv)+j*Nv+i+1]-f_temp6[r*(Nv)*(Nv)+j*Nv+i-1])/(2*delv)
            
     #if kl==50:
     #        kl=0
