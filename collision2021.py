@@ -534,27 +534,27 @@ def Matrix_QQ(R):
 			    AA[a*Nv:(a+1)*Nv,b*Nv:(b+1)*Nv]=Matrix_Q(R,a)
     return AA
 
-#AAA=np.zeros(((Nr)*(Nv)**2,(Nr)*(Nv)**2))
-#QQQ=np.zeros(((Nr)*(Nv)**2,(Nr)*(Nv)**2))
-#for a in range(Nr):
-#	for b in range(Nr):
-#		if a==b:
-#			AAA[a*(Nv*Nv):(a+1)*(Nv*Nv),b*(Nv*Nv):(b+1)*(Nv*Nv)]=Matrix_AA(a)
-#			QQQ[a*(Nv*Nv):(a+1)*(Nv*Nv),b*(Nv*Nv):(b+1)*(Nv*Nv)]=Matrix_QQ(a)
+AAA=np.zeros(((Nr)*(Nv)**2,(Nr)*(Nv)**2))
+QQQ=np.zeros(((Nr)*(Nv)**2,(Nr)*(Nv)**2))
+for a in range(Nr):
+	for b in range(Nr):
+		if a==b:
+			AAA[a*(Nv*Nv):(a+1)*(Nv*Nv),b*(Nv*Nv):(b+1)*(Nv*Nv)]=Matrix_AA(a)
+			QQQ[a*(Nv*Nv):(a+1)*(Nv*Nv),b*(Nv*Nv):(b+1)*(Nv*Nv)]=Matrix_QQ(a)
 
-#for a in range(Nr-1):
-#	for b in range(Nr-1):
-#		if a==b:
-#			AAA[(a+1)*(Nv*Nv):(a+2)*(Nv*Nv),(b)*(Nv*Nv):(b+1)*(Nv*Nv)]=-Matrix_alphaA(a+1)
-#			AAA[(a)*(Nv*Nv):(a+1)*(Nv*Nv),(b+1)*(Nv*Nv):(b+2)*(Nv*Nv)]=Matrix_alphaA(a)
-#			QQQ[a*(Nv*Nv):(a+1)*(Nv*Nv),(b+1)*(Nv*Nv):(b+2)*(Nv*Nv)]=-Matrix_alphaA(a)
-#			QQQ[(a+1)*(Nv*Nv):(a+2)*(Nv*Nv),(b)*(Nv*Nv):(b+1)*(Nv*Nv)]=Matrix_alphaA(a+1)
+for a in range(Nr-1):
+	for b in range(Nr-1):
+		if a==b:
+			AAA[(a+1)*(Nv*Nv):(a+2)*(Nv*Nv),(b)*(Nv*Nv):(b+1)*(Nv*Nv)]=-Matrix_alphaA(a+1)
+			AAA[(a)*(Nv*Nv):(a+1)*(Nv*Nv),(b+1)*(Nv*Nv):(b+2)*(Nv*Nv)]=Matrix_alphaA(a)
+			QQQ[a*(Nv*Nv):(a+1)*(Nv*Nv),(b+1)*(Nv*Nv):(b+2)*(Nv*Nv)]=-Matrix_alphaA(a)
+			QQQ[(a+1)*(Nv*Nv):(a+2)*(Nv*Nv),(b)*(Nv*Nv):(b+1)*(Nv*Nv)]=Matrix_alphaA(a+1)
 
-#AAA_1 = np.linalg.inv(AAA)
-#del AAA
-#AQ=dot(AAA_1,QQQ)
-#del AAA_1
-#del QQQ
+AAA_1 = np.linalg.inv(AAA)
+del AAA
+AQ=dot(AAA_1,QQQ)
+del AAA_1
+del QQQ
 f_1 = np.load('data_next.npy')
 
 X2,Y2 = np.meshgrid(pal_v,per_v)
