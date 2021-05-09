@@ -801,6 +801,7 @@ for p in range(13):
                             else:
                                     f_1[r*(Nv)*(Nv)+j*Nv+i]=f_temp6[r*(Nv)*(Nv)+j*Nv+i]+Bulk_next[r]*(f_temp6[r*(Nv)*(Nv)+j*Nv+i+1]-f_temp6[r*(Nv)*(Nv)+j*Nv+i-1])/(2*delv)
 
+            f_next[:,:]=f_1[:,:]
             norm=0
             for R in range(Nr):
                     for J in range(Nv):
