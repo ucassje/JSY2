@@ -951,7 +951,7 @@ for k in range(timestep):
     #        norm_bulk=norm_bulk+abs(Bulk_next[R]-Bulk_pre[R])**2
     #Normvalue_bulk[k]=norm_bulk**0.5
     #print(norm_bulk**0.5)
-    
+    f_next[:,:]=f_1[:,:]
     norm=0
     for R in range(Nr):
             for J in range(Nv):
