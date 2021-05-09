@@ -534,29 +534,28 @@ def Matrix_QQ(R):
 			    AA[a*Nv:(a+1)*Nv,b*Nv:(b+1)*Nv]=Matrix_Q(R,a)
     return AA
 
-AAA=np.zeros(((Nr)*(Nv)**2,(Nr)*(Nv)**2))
-QQQ=np.zeros(((Nr)*(Nv)**2,(Nr)*(Nv)**2))
-for a in range(Nr):
-	for b in range(Nr):
-		if a==b:
-			AAA[a*(Nv*Nv):(a+1)*(Nv*Nv),b*(Nv*Nv):(b+1)*(Nv*Nv)]=Matrix_AA(a)
-			QQQ[a*(Nv*Nv):(a+1)*(Nv*Nv),b*(Nv*Nv):(b+1)*(Nv*Nv)]=Matrix_QQ(a)
+#AAA=np.zeros(((Nr)*(Nv)**2,(Nr)*(Nv)**2))
+#QQQ=np.zeros(((Nr)*(Nv)**2,(Nr)*(Nv)**2))
+#for a in range(Nr):
+#	for b in range(Nr):
+#		if a==b:
+#			AAA[a*(Nv*Nv):(a+1)*(Nv*Nv),b*(Nv*Nv):(b+1)*(Nv*Nv)]=Matrix_AA(a)
+#			QQQ[a*(Nv*Nv):(a+1)*(Nv*Nv),b*(Nv*Nv):(b+1)*(Nv*Nv)]=Matrix_QQ(a)
 
-for a in range(Nr-1):
-	for b in range(Nr-1):
-		if a==b:
-			AAA[(a+1)*(Nv*Nv):(a+2)*(Nv*Nv),(b)*(Nv*Nv):(b+1)*(Nv*Nv)]=-Matrix_alphaA(a+1)
-			AAA[(a)*(Nv*Nv):(a+1)*(Nv*Nv),(b+1)*(Nv*Nv):(b+2)*(Nv*Nv)]=Matrix_alphaA(a)
-			QQQ[a*(Nv*Nv):(a+1)*(Nv*Nv),(b+1)*(Nv*Nv):(b+2)*(Nv*Nv)]=-Matrix_alphaA(a)
-			QQQ[(a+1)*(Nv*Nv):(a+2)*(Nv*Nv),(b)*(Nv*Nv):(b+1)*(Nv*Nv)]=Matrix_alphaA(a+1)
+#for a in range(Nr-1):
+#	for b in range(Nr-1):
+#		if a==b:
+#			AAA[(a+1)*(Nv*Nv):(a+2)*(Nv*Nv),(b)*(Nv*Nv):(b+1)*(Nv*Nv)]=-Matrix_alphaA(a+1)
+#			AAA[(a)*(Nv*Nv):(a+1)*(Nv*Nv),(b+1)*(Nv*Nv):(b+2)*(Nv*Nv)]=Matrix_alphaA(a)
+#			QQQ[a*(Nv*Nv):(a+1)*(Nv*Nv),(b+1)*(Nv*Nv):(b+2)*(Nv*Nv)]=-Matrix_alphaA(a)
+#			QQQ[(a+1)*(Nv*Nv):(a+2)*(Nv*Nv),(b)*(Nv*Nv):(b+1)*(Nv*Nv)]=Matrix_alphaA(a+1)
 
-AAA_1 = np.linalg.inv(AAA)
-del AAA
-AQ=dot(AAA_1,QQQ)
-del AAA_1
-del QQQ
-#np.set_printoptions(threshold=np.inf)
-#print(AQ)
+#AAA_1 = np.linalg.inv(AAA)
+#del AAA
+#AQ=dot(AAA_1,QQQ)
+#del AAA_1
+#del QQQ
+f_1 = np.load('data_next.npy')
 
 X2,Y2 = np.meshgrid(pal_v,per_v)
 cont_lev = np.linspace(-10,0,25)
@@ -567,7 +566,7 @@ kl=50
 
 np.save('data_pre.npy', f_1)
 
-timestep=500#448 #948
+timestep=200#448 #948
 Normvalue=np.zeros(shape = (timestep))
 Normvalue_bulk=np.zeros(shape = (timestep))
 for k in range(timestep):
@@ -1322,7 +1321,7 @@ ax.set_ylabel(r'$n_e (m^{-3})$', fontsize=28)
 ax.plot(z,Density,linewidth=3.0, color='k',label=r'$Calculated \ Density$');
 ax.plot(z,max(Density)*(z[0]/z)**2,linewidth=3.0, color='r',linestyle='--',label=r'$1/r^{2} \ Profile$');
 ax.plot(z,max(Density)*(z[0]/z)**2*(WS[0]/(WS)),linewidth=3.0, color='b',linestyle='dashdot',label=r'$1/(Ur^{2}) \ Profile$');
-#ax.plot(z,max(Density)*(z[0]/z)**2*(WS[0]+Bulk[0])/(WS+Bulk),linewidth=3.0, color='r',linestyle='dotted',label=r'$Anaytical \ 1/(U+U_{bulk})r^{2} \ Density$');
+ax.plot(z,max(Density)*(z[0]/z)**2*(WS[0]+Bulk[0])/(WS+Bulk),linewidth=3.0, color='r',linestyle='dotted',label=r'$Anaytical \ 1/(U+U_{bulk})r^{2} \ Density$');
 plt.legend(loc='upper right')
 plt.savefig(f'{path_current}figure/density.png')
 plt.clf()
