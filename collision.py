@@ -609,7 +609,7 @@ def Matrix_QQ(R):
 			    AA[a*Nv:(a+1)*Nv,b*Nv:(b+1)*Nv]=Matrix_Q(R,a)
     return AA
 
-for p in range(100):
+for p in range(13):
         print(p)
         f_pre = np.load('data_pre.npy')
         f_1 = np.load('data_next.npy')
@@ -722,7 +722,7 @@ for p in range(100):
         
         np.save('data_pre.npy', f_1)
 
-        timestep=1 #700
+        timestep=50 #700
         Normvalue=np.zeros(shape = (timestep))
         Normvalue_bulk=np.zeros(shape = (timestep))
         for k in range(timestep):
@@ -790,6 +790,24 @@ for p in range(100):
                                     for i in range(Nv):
                                             if f_1[(r)*(Nv)*(Nv)+j*Nv+i]<0:
                                                     f_1[(r)*(Nv)*(Nv)+j*Nv+i]=mini
+
+            f_temp6=np.zeros(shape = (Nr*Nv**2, 1))
+            f_temp6[:,:]=f_1[:,:]
+            for r in range(Nr):
+                for j in range(Nv):
+                    for i in range(Nv):
+                            if i==0 or i==Nv-1:
+                                    f_1[r*(Nv)*(Nv)+j*Nv+i]=f_1[r*(Nv)*(Nv)+j*Nv+i]
+                            else:
+                                    f_1[r*(Nv)*(Nv)+j*Nv+i]=f_temp6[r*(Nv)*(Nv)+j*Nv+i]+Bulk_next[r]*(f_temp6[r*(Nv)*(Nv)+j*Nv+i+1]-f_temp6[r*(Nv)*(Nv)+j*Nv+i-1])/(2*delv)
+
+            norm=0
+            for R in range(Nr):
+                    for J in range(Nv):
+                            for I in range(Nv):
+                                    norm=norm+abs((f_next[R*(Nv)*(Nv)+J*Nv+I]/np.max(f_next)-f_pre[R*(Nv)*(Nv)+J*Nv+I]/np.max(f_pre)))**2
+            Normvalue[k]=norm**0.5
+            print(norm**0.5)
 
         np.save('data_next.npy', f_1)
 
