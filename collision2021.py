@@ -994,7 +994,7 @@ for k in range(timestep):
             plt.clf()
             plt.close()
             
-    #kl=kl+1
+    kl=kl+1
     
         
     #norm_bulk=0
