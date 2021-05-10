@@ -346,6 +346,13 @@ def dlnB(x):
 def electric(x):
         return U_solar(x)*dU_solar(x)/(cos(x)**2)+(U_solar(x)**2/cos(x))*dcos_1(x)+(1/v_Ae_0**2)*(Bol_k)/(Me*n(x))*(n(x)*temperature(x)*lntemperature(x)+temperature(x)*n(x)*lnn(x))+(1/v_Ae_0**2)*(Bol_k)/(Me)*dcos(x)/cos(x)*temperature(x)+(1/v_Ae_0**2)*(Bol_k)/(2*Me)*dlnB(x)*temperature(x)+(1/v_Ae_0**2)*(2*Bol_k)/(Me*x)*temperature(x)
 
+temp=0
+for r in range(Nr):
+        temp=temp+cos(z[r])*electric(z[r])*delz
+print("E-Field")
+print(-temp)
+
+
 #for R in range(Nr):
 #        print(electric(z[R]))
 
