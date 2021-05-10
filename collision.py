@@ -791,6 +791,31 @@ for p in range(13):
                                             if f_1[(r)*(Nv)*(Nv)+j*Nv+i]<0:
                                                     f_1[(r)*(Nv)*(Nv)+j*Nv+i]=mini
 
+            Density_next=np.zeros(shape = (Nr))
+            for r in range(Nr):
+                tempDensity=0
+                for j in range(Nv):
+                    for i in range(Nv):
+                        if per_v[j]<0:
+                              tempDensity=tempDensity
+                        else:
+                              tempDensity=tempDensity+2*np.pi*f_1[r*(Nv)*(Nv)+j*Nv+i]*abs(per_v[j])*(pal_v[1]-pal_v[0])**2
+                Density_next[r]=tempDensity/(r_s**3)
+
+
+
+            Bulk_next=np.zeros(shape = (Nr))
+            for r in range(Nr):
+                tempBulk=0
+                for j in range(Nv):
+                    for i in range(Nv):
+                        if per_v[j]>=0:
+                              tempBulk=tempBulk+2*np.pi*pal_v[i]*f_1[r*(Nv)*(Nv)+j*Nv+i]*abs(per_v[j])*(pal_v[1]-pal_v[0])**2
+                        else:
+                              tempBulk=tempBulk
+                Bulk_next[r]=tempBulk/((r_s**3)*Density_next[r])
+
+
             f_temp6=np.zeros(shape = (Nr*Nv**2, 1))
             f_temp6[:,:]=f_1[:,:]
             for r in range(Nr):
