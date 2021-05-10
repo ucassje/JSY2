@@ -29,9 +29,9 @@ def n_0(r):
         return 1*(215/r)**2
 
 def B_0(r):
-        return 10*(215/r)**2
+        return 1*(215/r)**2
 
-v_Ae_0=(B_0(215)*10**(-9))/(4.*np.pi*10**(-7)*9.1094*10**(-31)*10*n_0(215)*10**6)**0.5
+v_Ae_0=(10*B_0(215)*10**(-9))/(4.*np.pi*10**(-7)*9.1094*10**(-31)*10*n_0(215)*10**6)**0.5
 print(v_Ae_0)
 q=1.6022*(10**(-19))
 Me=9.1094*(10**(-31))
@@ -43,7 +43,7 @@ pal_v = np.linspace(-Mv, Mv, Nv)
 per_v = np.linspace(-Mv, Mv, Nv)
 delv=pal_v[1]-pal_v[0]
 print(delv)
-Nr=30      #radial step number
+Nr=100      #radial step number
 r_s=696340000.
 z=np.linspace(i_solar_r, f_solar_r, Nr)
 delz=z[1]-z[0]
@@ -345,6 +345,12 @@ def dlnB(x):
 
 def electric(x):
         return U_solar(x)*dU_solar(x)/(cos(x)**2)+(U_solar(x)**2/cos(x))*dcos_1(x)+(1/v_Ae_0**2)*(Bol_k)/(Me*n(x))*(n(x)*temperature(x)*lntemperature(x)+temperature(x)*n(x)*lnn(x))+(1/v_Ae_0**2)*(Bol_k)/(Me)*dcos(x)/cos(x)*temperature(x)+(1/v_Ae_0**2)*(Bol_k)/(2*Me)*dlnB(x)*temperature(x)+(1/v_Ae_0**2)*(2*Bol_k)/(Me*x)*temperature(x)
+
+temp=0
+for r in range(Nr):
+        temp=temp+cos(z[r])*electric(z[r])*delz
+print("E-Field")
+print(-temp)
 
 temp=0
 for r in range(Nr):
