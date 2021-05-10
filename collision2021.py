@@ -57,7 +57,7 @@ Fv=delt/delv
 Fvv=delt/(delv)**2
 Fz=delt/delz
 U_f=800000./v_Ae_0
-T_e=15*10**5; #5*(10**(5))
+T_e=10*10**5; #5*(10**(5))
 T_e_back=10*(10**(5));
 Bol_k=1.3807*(10**(-23));
 kappa=2
@@ -724,18 +724,27 @@ for k in range(timestep):
 
     
     
-    
+    #Density_next=np.zeros(shape = (Nr))
+    #for r in range(Nr):
+    #    tempDensity=0
+    #    for j in range(Nv):
+    #        for i in range(Nv):
+    #            if per_v[j]<0:
+    #                  tempDensity=tempDensity
+    #            else:
+    #                  tempDensity=tempDensity+2*np.pi*f_1[r*(Nv)*(Nv)+j*Nv+i]*abs(per_v[j])*(pal_v[1]-pal_v[0])**2
+    #    Density_next[r]=tempDensity/(r_s**3)
 
 
     
     f_temp3=np.zeros(shape = (Nr*Nv**2, 1))
     f_temp3[:,:]=f_1[:,:] 
-    for q in range(Nr):                               #VON neumann boundary condition for r-derivative
+    for r in range(Nr):                               #VON neumann boundary condition for r-derivative
             for j in range(Nv):
                     for i in range(Nv):
-                            if q==Nr-1:
+                            if r==Nr-1:
                                     kappa=50
-                                    f_1[q*(Nv)*(Nv)+j*Nv+i]=2*f_temp3[(r)*(Nv)*(Nv)+(j)*Nv+i]*ratio_r[r*(Nv)*(Nv)+j*Nv+i]**(-1)-f_temp3[(r-1)*(Nv)*(Nv)+(j)*Nv+i]*ratio_r[(r-1)*(Nv)*(Nv)+j*Nv+i]**(-1)*ratio_r[r*(Nv)*(Nv)+j*Nv+i]**(-1)#2*f_1[(q-1)*(Nv)*(Nv)+(j)*Nv+i]-f_1[(q-2)*(Nv)*(Nv)+(j)*Nv+i] #np.max(f_1)*10**(2*np.log10(f_1[(q-1)*(Nv)*(Nv)+(j)*Nv+i]/np.max(f_1))-np.log10(f_1[(q-2)*(Nv)*(Nv)+(j)*Nv+i]/np.max(f_1))) #f_1[(q-1)*(Nv)*(Nv)+j*Nv+i]+delz*f_1[(q-1)*(Nv)*(Nv)+j*Nv+i]*(lnn(z[q-1])-(1/U_solar(z[q-1]))*dU_solar(z[q-1])-(3/2)*lntemperature(z[q-1])+(2*(kappa+1)/(2*kappa-3))*(per_v[j]**2/v_th_function(Temperat_per[q-1])**2+pal_v[i]**2/v_th_function(Temperat_pal[q-1])**2)*lntemperature(z[q-1])*(1.+(2/(2*kappa-3))*((per_v[j]/v_th_function(Temperat_per[q-1]))**2)+(2/(2*kappa-3))*((pal_v[i]/v_th_function(Temperat_pal[q-1]))**2))**(-1.)) #(per_v[j]**2*U_solar(z[q-1])/(2*(U_solar(z[q-1])+cos(z[q-1])*pal_v[i])*v_th_function(Temperat_per[q-1]))*(4*(kappa+1)/(2*kappa-3))*dlnB(z[q-1]))*(1.+(2/(2*kappa-3))*((per_v[j]/v_th_function(Temperat_per[q-1]))**2)+(2/(2*kappa-3))*((pal_v[i]/v_th_function(Temperat_pal[q-1]))**2))**(-1.)
+                                    f_1[r*(Nv)*(Nv)+j*Nv+i]=2*f_temp3[(r)*(Nv)*(Nv)+(j)*Nv+i]*ratio_r[r*(Nv)*(Nv)+j*Nv+i]**(-1)-f_temp3[(r-1)*(Nv)*(Nv)+(j)*Nv+i]*ratio_r[(r-1)*(Nv)*(Nv)+j*Nv+i]**(-1)*ratio_r[r*(Nv)*(Nv)+j*Nv+i]**(-1)#2*f_1[(q-1)*(Nv)*(Nv)+(j)*Nv+i]-f_1[(q-2)*(Nv)*(Nv)+(j)*Nv+i] #np.max(f_1)*10**(2*np.log10(f_1[(q-1)*(Nv)*(Nv)+(j)*Nv+i]/np.max(f_1))-np.log10(f_1[(q-2)*(Nv)*(Nv)+(j)*Nv+i]/np.max(f_1))) #f_1[(q-1)*(Nv)*(Nv)+j*Nv+i]+delz*f_1[(q-1)*(Nv)*(Nv)+j*Nv+i]*(lnn(z[q-1])-(1/U_solar(z[q-1]))*dU_solar(z[q-1])-(3/2)*lntemperature(z[q-1])+(2*(kappa+1)/(2*kappa-3))*(per_v[j]**2/v_th_function(Temperat_per[q-1])**2+pal_v[i]**2/v_th_function(Temperat_pal[q-1])**2)*lntemperature(z[q-1])*(1.+(2/(2*kappa-3))*((per_v[j]/v_th_function(Temperat_per[q-1]))**2)+(2/(2*kappa-3))*((pal_v[i]/v_th_function(Temperat_pal[q-1]))**2))**(-1.)) #(per_v[j]**2*U_solar(z[q-1])/(2*(U_solar(z[q-1])+cos(z[q-1])*pal_v[i])*v_th_function(Temperat_per[q-1]))*(4*(kappa+1)/(2*kappa-3))*dlnB(z[q-1]))*(1.+(2/(2*kappa-3))*((per_v[j]/v_th_function(Temperat_per[q-1]))**2)+(2/(2*kappa-3))*((pal_v[i]/v_th_function(Temperat_pal[q-1]))**2))**(-1.)
                             #elif q==1:
                             #        f_temp3[q*(Nv)*(Nv)+j*Nv+i]=2*f_1[(q+1)*(Nv)*(Nv)+(j)*Nv+i]-f_1[(q+2)*(Nv)*(Nv)+(j)*Nv+i]
     #f_1[:,:]=f_temp3[:,:]
