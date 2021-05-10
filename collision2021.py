@@ -18,7 +18,7 @@ from lmfit import Parameters, fit_report, minimize
 #from lmfit import Model
 import lmfit
 
-Nv=35  #velocity step number
+Nv=30  #velocity step number
 i_solar_r=5 #10
 f_solar_r=20 #30
 path_home="/Users/user/Desktop/JSY2/"
@@ -728,17 +728,17 @@ for k in range(timestep):
 
 
     
-    #f_temp3=np.zeros(shape = (Nr*Nv**2, 1))
-    #f_temp3[:,:]=f_1[:,:] 
-    #for q in range(Nr):                               #VON neumann boundary condition for r-derivative
-    #        for j in range(Nv):
-    #                for i in range(Nv):
-    #                        if q==Nr-1:
-    #                                kappa=50
-    #                                f_temp3[q*(Nv)*(Nv)+j*Nv+i]=2*f_1[(q-1)*(Nv)*(Nv)+(j)*Nv+i]-f_1[(q-2)*(Nv)*(Nv)+(j)*Nv+i] #np.max(f_1)*10**(2*np.log10(f_1[(q-1)*(Nv)*(Nv)+(j)*Nv+i]/np.max(f_1))-np.log10(f_1[(q-2)*(Nv)*(Nv)+(j)*Nv+i]/np.max(f_1))) #f_1[(q-1)*(Nv)*(Nv)+j*Nv+i]+delz*f_1[(q-1)*(Nv)*(Nv)+j*Nv+i]*(lnn(z[q-1])-(1/U_solar(z[q-1]))*dU_solar(z[q-1])-(3/2)*lntemperature(z[q-1])+(2*(kappa+1)/(2*kappa-3))*(per_v[j]**2/v_th_function(Temperat_per[q-1])**2+pal_v[i]**2/v_th_function(Temperat_pal[q-1])**2)*lntemperature(z[q-1])*(1.+(2/(2*kappa-3))*((per_v[j]/v_th_function(Temperat_per[q-1]))**2)+(2/(2*kappa-3))*((pal_v[i]/v_th_function(Temperat_pal[q-1]))**2))**(-1.)) #(per_v[j]**2*U_solar(z[q-1])/(2*(U_solar(z[q-1])+cos(z[q-1])*pal_v[i])*v_th_function(Temperat_per[q-1]))*(4*(kappa+1)/(2*kappa-3))*dlnB(z[q-1]))*(1.+(2/(2*kappa-3))*((per_v[j]/v_th_function(Temperat_per[q-1]))**2)+(2/(2*kappa-3))*((pal_v[i]/v_th_function(Temperat_pal[q-1]))**2))**(-1.)
+    f_temp3=np.zeros(shape = (Nr*Nv**2, 1))
+    f_temp3[:,:]=f_1[:,:] 
+    for q in range(Nr):                               #VON neumann boundary condition for r-derivative
+            for j in range(Nv):
+                    for i in range(Nv):
+                            if q==Nr-1:
+                                    kappa=50
+                                    f_temp3[q*(Nv)*(Nv)+j*Nv+i]=2*f_1[(q-1)*(Nv)*(Nv)+(j)*Nv+i]-f_1[(q-2)*(Nv)*(Nv)+(j)*Nv+i] #np.max(f_1)*10**(2*np.log10(f_1[(q-1)*(Nv)*(Nv)+(j)*Nv+i]/np.max(f_1))-np.log10(f_1[(q-2)*(Nv)*(Nv)+(j)*Nv+i]/np.max(f_1))) #f_1[(q-1)*(Nv)*(Nv)+j*Nv+i]+delz*f_1[(q-1)*(Nv)*(Nv)+j*Nv+i]*(lnn(z[q-1])-(1/U_solar(z[q-1]))*dU_solar(z[q-1])-(3/2)*lntemperature(z[q-1])+(2*(kappa+1)/(2*kappa-3))*(per_v[j]**2/v_th_function(Temperat_per[q-1])**2+pal_v[i]**2/v_th_function(Temperat_pal[q-1])**2)*lntemperature(z[q-1])*(1.+(2/(2*kappa-3))*((per_v[j]/v_th_function(Temperat_per[q-1]))**2)+(2/(2*kappa-3))*((pal_v[i]/v_th_function(Temperat_pal[q-1]))**2))**(-1.)) #(per_v[j]**2*U_solar(z[q-1])/(2*(U_solar(z[q-1])+cos(z[q-1])*pal_v[i])*v_th_function(Temperat_per[q-1]))*(4*(kappa+1)/(2*kappa-3))*dlnB(z[q-1]))*(1.+(2/(2*kappa-3))*((per_v[j]/v_th_function(Temperat_per[q-1]))**2)+(2/(2*kappa-3))*((pal_v[i]/v_th_function(Temperat_pal[q-1]))**2))**(-1.)
                             #elif q==1:
                             #        f_temp3[q*(Nv)*(Nv)+j*Nv+i]=2*f_1[(q+1)*(Nv)*(Nv)+(j)*Nv+i]-f_1[(q+2)*(Nv)*(Nv)+(j)*Nv+i]
-    #f_1[:,:]=f_temp3[:,:]
+    f_1[:,:]=f_temp3[:,:]
     
     #for q in range(Nr):
     #        for j in range(Nv):
