@@ -617,7 +617,7 @@ kl=20
 
 np.save('data_pre.npy', f_1)
 
-timestep=500#448 #948
+timestep=600#448 #948
 Normvalue=np.zeros(shape = (timestep))
 Normvalue_bulk=np.zeros(shape = (timestep))
 for k in range(timestep):
