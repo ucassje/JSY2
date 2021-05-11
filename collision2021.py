@@ -977,14 +977,14 @@ for k in range(timestep):
     #        norm_bulk=norm_bulk+abs(Bulk_next[R]-Bulk_pre[R])**2
     #Normvalue_bulk[k]=norm_bulk**0.5
     #print(norm_bulk**0.5)
-    f_next[:,:]=f_1[:,:]
-    norm=0
-    for R in range(Nr):
-            for J in range(Nv):
-                    for I in range(Nv):
-                            norm=norm+abs((f_next[R*(Nv)*(Nv)+J*Nv+I]/np.max(f_next)-f_pre[R*(Nv)*(Nv)+J*Nv+I]/np.max(f_pre)))**2
-    Normvalue[k]=norm**0.5
-    print(norm**0.5)
+    #f_next[:,:]=f_1[:,:]
+    #norm=0
+    #for R in range(Nr):
+    #        for J in range(Nv):
+    #                for I in range(Nv):
+    #                        norm=norm+abs((f_next[R*(Nv)*(Nv)+J*Nv+I]/np.max(f_next)-f_pre[R*(Nv)*(Nv)+J*Nv+I]/np.max(f_pre)))**2
+    #Normvalue[k]=norm**0.5
+    #print(norm**0.5)
 
 
 
