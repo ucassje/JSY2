@@ -789,16 +789,16 @@ for k in range(timestep):
             if r>0:
                     for j in range(Nv):
                             for i in range(Nv):
-                                    if f_temp5[(r)*(Nv)*(Nv)+j*Nv+i]<0:
-                                            f_temp5[(r)*(Nv)*(Nv)+j*Nv+i]=10**(50)
-    mini=min(f_temp5)
+                                    if f_temp5[(r)*(Nv)*(Nv)+j*Nv+i]/np.max(f_temp5)<10**(-10):
+                                            f_temp5[(r)*(Nv)*(Nv)+j*Nv+i]=10**(-40)*np.max(f_temp5)
+    #mini=min(f_temp5)
 
-    for r in range(Nr):
-            if r>0:
-                    for j in range(Nv):
-                            for i in range(Nv):
-                                    if f_1[(r)*(Nv)*(Nv)+j*Nv+i]<0:
-                                            f_1[(r)*(Nv)*(Nv)+j*Nv+i]=mini
+    #for r in range(Nr):
+    #        if r>0:
+    #                for j in range(Nv):
+    #                        for i in range(Nv):
+    #                                if f_1[(r)*(Nv)*(Nv)+j*Nv+i]<0:
+    #                                        f_1[(r)*(Nv)*(Nv)+j*Nv+i]=mini
 
     
     #Density_next=np.zeros(shape = (Nr))
