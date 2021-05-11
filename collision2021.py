@@ -838,6 +838,12 @@ for k in range(timestep):
            
     if kl==20:
             kl=0
+            ratio_r=np.zeros(shape = (Nr*Nv**2, 1))
+            for r in range(Nr-1):
+                for j in range(Nv):
+                        for i in range(Nv):
+                                ratio_r[r*(Nv)*(Nv)+j*Nv+i]=abs(f_1[r*(Nv)*(Nv)+j*Nv+i]/f_1[(r+1)*(Nv)*(Nv)+j*Nv+i])
+                                
             d_pal_ne=np.zeros(shape = (Nr*Nv, 1))
             for r in range(Nr):
                 for j in range(Nv):
