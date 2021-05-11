@@ -617,7 +617,7 @@ kl=20
 
 np.save('data_pre.npy', f_1)
 
-timestep=1200#448 #948
+timestep=500#448 #948
 Normvalue=np.zeros(shape = (timestep))
 Normvalue_bulk=np.zeros(shape = (timestep))
 for k in range(timestep):
@@ -789,16 +789,16 @@ for k in range(timestep):
             if r>0:
                     for j in range(Nv):
                             for i in range(Nv):
-                                    if f_temp5[(r)*(Nv)*(Nv)+j*Nv+i]/np.max(f_temp5)<10**(-10):
-                                            f_temp5[(r)*(Nv)*(Nv)+j*Nv+i]=10**(-40)*np.max(f_temp5)
-    #mini=min(f_temp5)
+                                    if f_temp5[(r)*(Nv)*(Nv)+j*Nv+i]<0:
+                                            f_temp5[(r)*(Nv)*(Nv)+j*Nv+i]=10**(50)
+    mini=min(f_temp5)
 
-    #for r in range(Nr):
-    #        if r>0:
-    #                for j in range(Nv):
-    #                        for i in range(Nv):
-    #                                if f_1[(r)*(Nv)*(Nv)+j*Nv+i]<0:
-    #                                        f_1[(r)*(Nv)*(Nv)+j*Nv+i]=mini
+    for r in range(Nr):
+            if r>0:
+                    for j in range(Nv):
+                            for i in range(Nv):
+                                    if f_1[(r)*(Nv)*(Nv)+j*Nv+i]<0:
+                                            f_1[(r)*(Nv)*(Nv)+j*Nv+i]=mini
 
     
     #Density_next=np.zeros(shape = (Nr))
@@ -838,12 +838,6 @@ for k in range(timestep):
            
     if kl==20:
             kl=0
-            ratio_r=np.zeros(shape = (Nr*Nv**2, 1))
-            for r in range(Nr-1):
-                for j in range(Nv):
-                        for i in range(Nv):
-                                ratio_r[r*(Nv)*(Nv)+j*Nv+i]=abs(f_1[r*(Nv)*(Nv)+j*Nv+i]/f_1[(r+1)*(Nv)*(Nv)+j*Nv+i])
-                                
             d_pal_ne=np.zeros(shape = (Nr*Nv, 1))
             for r in range(Nr):
                 for j in range(Nv):
@@ -878,7 +872,7 @@ for k in range(timestep):
 
             d_pal_po_per_po=np.zeros(shape = (Nr, 1))
             for r in range(Nr):
-                d_pal_po_per_po[r]=abs(f_1[r*(Nv)*(Nv)+(Nv-1)*Nv+Nv-1]/f_1[r*(Nv)*(Nv)+(Nv-2)*Nv+Nv-2])#abs(f_1[r*(Nv)*(Nv)+(Nv-1)*Nv+Nv-1]-f_1[r*(Nv)*(Nv)+(Nv-2)*Nv+Nv-2])
+            d_pal_po_per_po[r]=abs(f_1[r*(Nv)*(Nv)+(Nv-1)*Nv+Nv-1]/f_1[r*(Nv)*(Nv)+(Nv-2)*Nv+Nv-2])#abs(f_1[r*(Nv)*(Nv)+(Nv-1)*Nv+Nv-1]-f_1[r*(Nv)*(Nv)+(Nv-2)*Nv+Nv-2])
 
     #        Density=np.zeros(shape = (Nr))
     #        for r in range(Nr):
