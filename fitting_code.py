@@ -125,6 +125,8 @@ Us=np.zeros(shape = (Nr))
 kappac=np.zeros(shape = (Nr))
 kappas=np.zeros(shape = (Nr))
 v_Ae=np.zeros(shape = (Nr))
+beta_c=np.zeros(shape = (Nr))
+beta_s=np.zeros(shape = (Nr))
 
 f_1 = np.load('data_next.npy')
 Density=np.zeros(shape = (Nr))
@@ -182,6 +184,9 @@ for r in range(Nr):
     kappas[r] = zx['kappas'].value
 
     v_Ae[r]=(B(z[r])*10**(-9))/(4.*np.pi*10**(-7)*9.1094*10**(-31)*Density[r])**0.5
+    beta_c[r]=8*np.pi*10**(-7)*Bol_k*Density[r]*nc[r]*Tc_pal[r]/(B(z[r])*10**(-9))**2
+    beta_s[r]=8*np.pi*10**(-7)*Bol_k*Density[r]*ns[r]*Ts_pal[r]/(B(z[r])*10**(-9))**2
+    
 
     fitting=np.zeros(shape = (Nv**2, 1))
     for j in range(Nv):
@@ -364,3 +369,19 @@ plt.clf()
 plt.close()
 
 
+plt.figure(figsize=(20,15))
+plt.grid()
+ax = plt.gca()
+plt.rc('font', size=35)
+plt.tick_params(labelsize=40)
+plt.ticklabel_format(style='sci', axis='y', scilimits=(0,0))
+ax.set_xlim([z[0],z[Nr-1]])
+ax.set_ylim([0,1])
+ax.set_xlabel(r'$r/r_s$', fontsize=28)
+ax.set_ylabel(r'$Beta \ Value$', fontsize=28)
+ax.plot(z,beta_c,linewidth=3.0, color='k',label=r'$beta_c$');
+ax.plot(z,beta_s,linewidth=3.0, color='r',label=r'$beta_s$');
+plt.legend(loc='upper right')
+plt.savefig(f'{path_current}fitting/beta.png')
+plt.clf()
+plt.close()
