@@ -28,9 +28,9 @@ def n_0(r):
         return 1*(215/r)**2
 
 def B_0(r):
-        return 10*(215/r)**2
+        return 1*(215/r)**2
 
-v_Ae_0=(B_0(215)*10**(-9))/(4.*np.pi*10**(-7)*9.1094*10**(-31)*10*n_0(215)*10**6)**0.5
+v_Ae_0=(10*B_0(215)*10**(-9))/(4.*np.pi*10**(-7)*9.1094*10**(-31)*10*n_0(215)*10**6)**0.5
 print(v_Ae_0)
 q=1.6022*(10**(-19))
 Me=9.1094*(10**(-31))
@@ -79,13 +79,13 @@ def lnn(r):
         return -2/r
 
 def U_solar(r):
-        return U_f*(np.exp(r/20.)-np.exp(-r/20.))/(np.exp(r/20.)+np.exp(-r/20.)) 
+        return U_f*(np.exp(r/10.)-np.exp(-r/10.))/(np.exp(r/10.)+np.exp(-r/10.)) 
 
 def B(x):
         return B_0(i_solar_r)*(i_solar_r/x)**2*(1+((x-i_solar_r)*Omega/U_solar(x))**2)**0.5
 
 def dU_solar(x):
-        return U_f*(1./20.)*(2./(np.exp(x/20.)+np.exp(-x/20.)))**2
+        return U_f*(1./10.)*(2./(np.exp(x/10.)+np.exp(-x/10.)))**2
 
 def cos(r):
         return (1/(1+(r*Omega/U_solar(r))**2)**0.5)
