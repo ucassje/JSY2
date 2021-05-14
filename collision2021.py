@@ -692,7 +692,7 @@ for p in range(1):
         f_temp[:,:]=f_1[:,:]
         kl=50
 
-        timestep=500 #700
+        timestep=800 #700
         Normvalue=np.zeros(shape = (timestep))
         Normvalue_bulk=np.zeros(shape = (timestep))
         for k in range(timestep):
