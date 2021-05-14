@@ -389,7 +389,8 @@ plt.clf()
 plt.close()
 
 Threshold=np.zeros(shape = (Nr))
-Threshold[r]=3*(2*Bol_k*Ts_pal/Me)**0.5
+for r in range(Nr):
+        Threshold[r]=3*(2*Bol_k*Ts_pal[r]/Me)**0.5
 plt.figure(figsize=(20,15))
 plt.grid()
 ax = plt.gca()
