@@ -611,7 +611,7 @@ def Matrix_QQ(R):
 X2,Y2 = np.meshgrid(pal_v,per_v)
 cont_lev = np.linspace(-10,0,25)
 
-
+solu1=np.zeros(shape = (Nv, Nv))
 
 #f_1 = np.load('data_next.npy')
 
