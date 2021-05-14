@@ -709,7 +709,7 @@ for p in range(1):
             f_temp4[:,:]=f_1[:,:]                                
             for r in range(Nr-1):
                         for j in range(Nv):
-                                f_temp4[(r+1)*(Nv)*(Nv)+j*Nv+Nv-1]=f_pre[(r+1)*(Nv)*(Nv)+j*Nv+Nv-1]-(U_solar(z[R])+pal_v[i]*cos(z[R]))*Fz*(f_pre[(r+1)*(Nv)*(Nv)+j*Nv+Nv-1]-f_pre[(r)*(Nv)*(Nv)+j*Nv+Nv-1])                       
+                                f_temp4[(r+1)*(Nv)*(Nv)+j*Nv+Nv-1]=f_pre[(r+1)*(Nv)*(Nv)+j*Nv+Nv-1]-(U_solar(z[r+1])+pal_v[Nv-1]*cos(z[r+1]))*Fz*(f_pre[(r+1)*(Nv)*(Nv)+j*Nv+Nv-1]-f_pre[(r)*(Nv)*(Nv)+j*Nv+Nv-1])                       
             f_1[:,:]=f_temp4[:,:]
 
             f_temp4=np.zeros(shape = (Nr*Nv**2, 1))
