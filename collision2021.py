@@ -616,7 +616,7 @@ cont_lev = np.linspace(-10,0,25)
 #f_1 = np.load('data_next.npy')
 
 
-
+l=50
 
 for p in range(1):
         print(p)
@@ -705,12 +705,12 @@ for p in range(1):
     
             f_1=dot(AQ, f_1)       
 
-            f_temp4=np.zeros(shape = (Nr*Nv**2, 1))
-            f_temp4[:,:]=f_1[:,:]                                
-            for r in range(Nr-1):
-                        for j in range(Nv):
-                                f_temp4[(r+1)*(Nv)*(Nv)+j*Nv+Nv-1]=f_pre[(r+1)*(Nv)*(Nv)+j*Nv+Nv-1]-(U_solar(z[r+1])+pal_v[Nv-1]*cos(z[r+1]))*Fz*(f_pre[(r+1)*(Nv)*(Nv)+j*Nv+Nv-1]-f_pre[(r)*(Nv)*(Nv)+j*Nv+Nv-1])                       
-            f_1[:,:]=f_temp4[:,:]
+            #f_temp4=np.zeros(shape = (Nr*Nv**2, 1))
+            #f_temp4[:,:]=f_1[:,:]                                
+            #for r in range(Nr-1):
+            #            for j in range(Nv):
+            #                    f_temp4[(r+1)*(Nv)*(Nv)+j*Nv+Nv-1]=f_pre[(r+1)*(Nv)*(Nv)+j*Nv+Nv-1]-(U_solar(z[r+1])+pal_v[Nv-1]*cos(z[r+1]))*Fz*(f_pre[(r+1)*(Nv)*(Nv)+j*Nv+Nv-1]-f_pre[(r)*(Nv)*(Nv)+j*Nv+Nv-1])                       
+            #f_1[:,:]=f_temp4[:,:]
 
             f_temp4=np.zeros(shape = (Nr*Nv**2, 1))
             f_temp4[:,:]=f_1[:,:]                                
@@ -750,9 +750,48 @@ for p in range(1):
 
             #f_1[:,:]=f_temp1[:,:]
 
-
-    
-    
+            
+            if l=50:
+                   l=0
+                   print("hello")
+                   for j in range(Nv):
+                        for i in range(Nv):
+                               if f_1[(15)*(Nv)*(Nv)+(j)*Nv+i]/np.max(f_1)>1:
+                                       solu1[j,i]=0
+                               elif f_1[(15)*(Nv)*(Nv)+(j)*Nv+i]/np.max(f_1)>10**(-8):
+                                       solu1[j,i]=np.log10(f_1[(15)*(Nv)*(Nv)+(j)*Nv+i]/np.max(f_1))
+                               else:
+                                       solu1[j,i]=-10
+                   fig = plt.figure()
+                   fig.set_dpi(500)
+                   plt.contourf(X2, Y2,solu1, cont_lev,cmap='Blues');
+                   ax = plt.gca()
+                   ax.spines['left'].set_position('center')
+                   ax.spines['left'].set_smart_bounds(True)
+                   ax.spines['bottom'].set_position('zero')
+                   ax.spines['bottom'].set_smart_bounds(True)
+                   ax.spines['right'].set_color('none')
+                   ax.spines['top'].set_color('none')
+                   ax.xaxis.set_ticks_position('bottom')
+                   plt.axis('equal')
+                   ax.xaxis.set_ticks_position('bottom')
+                   ax.yaxis.set_ticks_position('left')
+                   plt.rc('font', size=8)
+                   plt.tick_params(labelsize=8)
+                   plt.text(pal_v[Nv-6],0.1,r'$\mathcal{v}_\parallel/\mathcal{v}_{Ae0}$', fontsize=12)
+                   plt.text(0.,pal_v[Nv-2],r'$\mathcal{v}_\perp/\mathcal{v}_{Ae0}$', fontsize=12)
+                   plt.text(pal_v[Nv-9],pal_v[Nv-3], r'$r/r_s=$' "%.2f" % z[15], fontsize=12)
+                   #plt.text(pal_v[Nv-10],pal_v[Nv-2], r'$T(\mathcal{v}_{Ae0}/r_s):$' "%.2f" % nu, fontsize=8)
+                   #plt.text(pal_v[Nv-10],pal_v[Nv-4], r'$Nv=$' "%.2f" % Nv, fontsize=8)
+                   #plt.text(pal_v[Nv-10],pal_v[Nv-5], r'$Nr=$' "%.2f" % Nr, fontsize=8)
+                   plt.colorbar(label=r'$Log(F/F_{MAX})$')
+                   plt.savefig(f'{path_current}r=10/{k}.png')
+                   plt.clf()
+                   plt.close()
+            else:
+                   l=l+1 
+                   
+                    
             f_temp5=np.zeros(shape = (Nr*Nv**2, 1))
             f_temp5[:,:]=f_1[:,:]
             for r in range(Nr):
