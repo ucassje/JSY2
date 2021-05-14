@@ -613,12 +613,12 @@ cont_lev = np.linspace(-10,0,25)
 
 
 
-f_1 = np.load('data_next.npy')
+#f_1 = np.load('data_next.npy')
 
 
 
 
-for p in range(16):
+for p in range(1):
         print(p)
 
         Density_next=np.zeros(shape = (Nr))
@@ -692,7 +692,7 @@ for p in range(16):
         f_temp[:,:]=f_1[:,:]
         kl=50
 
-        timestep=50 #700
+        timestep=800 #700
         Normvalue=np.zeros(shape = (timestep))
         Normvalue_bulk=np.zeros(shape = (timestep))
         for k in range(timestep):
