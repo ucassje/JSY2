@@ -613,12 +613,12 @@ cont_lev = np.linspace(-10,0,25)
 
 
 
-f_1 = np.load('data_next.npy')
+#f_1 = np.load('data_next.npy')
 
 
 
 
-for p in range(2):
+for p in range(12):
         print(p)
 
         Density_next=np.zeros(shape = (Nr))
