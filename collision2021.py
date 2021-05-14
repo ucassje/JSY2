@@ -751,7 +751,7 @@ for p in range(1):
             #f_1[:,:]=f_temp1[:,:]
 
             
-            if l=50:
+            if l==50:
                    l=0
                    print("hello")
                    for j in range(Nv):
