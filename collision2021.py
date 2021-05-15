@@ -219,7 +219,26 @@ for r in range(Nr):
 d_pal_po_per_po=np.zeros(shape = (Nr, 1))
 for r in range(Nr):
         d_pal_po_per_po[r]=abs(f_1[r*(Nv)*(Nv)+(Nv-1)*Nv+Nv-1]/f_1[r*(Nv)*(Nv)+(Nv-2)*Nv+Nv-2])#abs(f_1[r*(Nv)*(Nv)+(Nv-1)*Nv+Nv-1]-f_1[r*(Nv)*(Nv)+(Nv-2)*Nv+Nv-2])
-                
+
+
+
+
+d_pal_po2=np.zeros(shape = (Nr*Nv, 1))
+for r in range(Nr):
+        for j in range(Nv-1):
+                d_pal_po2[r*(Nv)+j]=abs(f_1[r*(Nv)*(Nv)+j*Nv+Nv-1]/f_1[r*(Nv)*(Nv)+(j+1)*Nv+Nv-1])#abs(f_1[r*(Nv)*(Nv)+j*Nv+Nv-1]-f_1[r*(Nv)*(Nv)+j*Nv+Nv-2])
+
+d_pal_po3=np.zeros(shape = (Nr*Nv, 1))
+for r in range(Nr):
+        for j in range(Nv-1):
+                d_pal_po3[r*(Nv)+j]=abs(f_1[r*(Nv)*(Nv)+j*Nv+Nv-2]/f_1[r*(Nv)*(Nv)+(j+1)*Nv+Nv-2])#abs(f_1[r*(Nv)*(Nv)+j*Nv+Nv-1]-f_1[r*(Nv)*(Nv)+j*Nv+Nv-2])
+
+d_pal_po4=np.zeros(shape = (Nr*Nv, 1))
+for r in range(Nr):
+        for j in range(Nv-1):
+                d_pal_po4[r*(Nv)+j]=abs(f_1[r*(Nv)*(Nv)+j*Nv+Nv-3]/f_1[r*(Nv)*(Nv)+(j+1)*Nv+Nv-3])#abs(f_1[r*(Nv)*(Nv)+j*Nv+Nv-1]-f_1[r*(Nv)*(Nv)+j*Nv+Nv-2])
+
+         
 Col=4*np.pi/(r_s**2*v_Ae_0**4)*(q**2/(4*np.pi*epsilon*Me))**2*25
 
 def Collision_Core(a,b,r):
@@ -799,7 +818,7 @@ for p in range(1):
                         if j==0 or j==Nv-1:
                                 f_temp4[r*(Nv)*(Nv)+j*Nv+Nv-1]=f_1[r*(Nv)*(Nv)+(j)*Nv+Nv-1]
                         else:#elif f_temp4[r*(Nv)*(Nv)+j*Nv+Nv-1]<f_temp4[r*(Nv)*(Nv)+(j-1)*Nv+Nv-1] and f_temp4[r*(Nv)*(Nv)+j*Nv+Nv-1]<f_temp4[r*(Nv)*(Nv)+(j+1)*Nv+Nv-1]:
-                                f_temp4[r*(Nv)*(Nv)+j*Nv+Nv-1]=(1/4)*(f_1[r*(Nv)*(Nv)+(j-1)*Nv+Nv-1]+2*f_1[r*(Nv)*(Nv)+(j)*Nv+Nv-1]+f_1[r*(Nv)*(Nv)+(j+1)*Nv+Nv-1])
+                                f_temp4[r*(Nv)*(Nv)+j*Nv+Nv-1]=(1/4)*(f_1[r*(Nv)*(Nv)+(j-1)*Nv+Nv-1]*d_pal_po2[r*(Nv)+(j-1)]**(-1)+2*f_1[r*(Nv)*(Nv)+(j)*Nv+Nv-1]+f_1[r*(Nv)*(Nv)+(j+1)*Nv+Nv-1]*d_pal_po2[r*(Nv)+(j)])
             f_1[:,:]=f_temp4[:,:]
 
             f_temp4=np.zeros(shape = (Nr*Nv**2, 1))
@@ -809,7 +828,7 @@ for p in range(1):
                         if j==0 or j==Nv-1:
                                 f_temp4[r*(Nv)*(Nv)+j*Nv+Nv-2]=f_1[r*(Nv)*(Nv)+(j)*Nv+Nv-2]
                         else:#elif f_temp4[r*(Nv)*(Nv)+j*Nv+Nv-2]<f_temp4[r*(Nv)*(Nv)+(j-1)*Nv+Nv-2] and f_temp4[r*(Nv)*(Nv)+j*Nv+Nv-2]<f_temp4[r*(Nv)*(Nv)+(j+1)*Nv+Nv-2]:
-                                f_temp4[r*(Nv)*(Nv)+j*Nv+Nv-2]=(1/4)*(f_1[r*(Nv)*(Nv)+(j-1)*Nv+Nv-2]+2*f_1[r*(Nv)*(Nv)+(j)*Nv+Nv-2]+f_1[r*(Nv)*(Nv)+(j+1)*Nv+Nv-2])
+                                f_temp4[r*(Nv)*(Nv)+j*Nv+Nv-2]=(1/4)*(f_1[r*(Nv)*(Nv)+(j-1)*Nv+Nv-2]*d_pal_po3[r*(Nv)+(j-1)]**(-1)+2*f_1[r*(Nv)*(Nv)+(j)*Nv+Nv-2]+f_1[r*(Nv)*(Nv)+(j+1)*Nv+Nv-2]*d_pal_po3[r*(Nv)+(j)])
             f_1[:,:]=f_temp4[:,:]
 
             f_temp4=np.zeros(shape = (Nr*Nv**2, 1))
@@ -819,7 +838,7 @@ for p in range(1):
                         if j==0 or j==Nv-1:
                                 f_temp4[r*(Nv)*(Nv)+j*Nv+Nv-3]=f_1[r*(Nv)*(Nv)+(j)*Nv+Nv-3]
                         else:#elif f_temp4[r*(Nv)*(Nv)+j*Nv+Nv-2]<f_temp4[r*(Nv)*(Nv)+(j-1)*Nv+Nv-2] and f_temp4[r*(Nv)*(Nv)+j*Nv+Nv-2]<f_temp4[r*(Nv)*(Nv)+(j+1)*Nv+Nv-2]:
-                                f_temp4[r*(Nv)*(Nv)+j*Nv+Nv-3]=(1/4)*(f_1[r*(Nv)*(Nv)+(j-1)*Nv+Nv-3]+2*f_1[r*(Nv)*(Nv)+(j)*Nv+Nv-3]+f_1[r*(Nv)*(Nv)+(j+1)*Nv+Nv-3])
+                                f_temp4[r*(Nv)*(Nv)+j*Nv+Nv-3]=(1/4)*(f_1[r*(Nv)*(Nv)+(j-1)*Nv+Nv-3]*d_pal_po4[r*(Nv)+(j-1)]**(-1)+2*f_1[r*(Nv)*(Nv)+(j)*Nv+Nv-3]+f_1[r*(Nv)*(Nv)+(j+1)*Nv+Nv-3]*d_pal_po4[r*(Nv)+(j)])
             f_1[:,:]=f_temp4[:,:]
 
                     
