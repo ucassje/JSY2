@@ -37,7 +37,7 @@ q=1.6022*(10**(-19))
 Me=9.1094*(10**(-31))
 Mp=1.6726*(10**(-27))
 ratio=(Me/Mp)**0.5
-Mv=20*10**6/v_Ae_0  #5*10**7 #(2/3)*5*10**7 
+Mv=15*10**6/v_Ae_0  #5*10**7 #(2/3)*5*10**7 
 epsilon=8.8542*10**(-12)
 pal_v = np.linspace(-Mv, Mv, Nv)
 per_v = np.linspace(-Mv, Mv, Nv)
@@ -791,6 +791,37 @@ for p in range(1):
             else:
                    l=l+1 
                    
+
+            f_temp4=np.zeros(shape = (Nr*Nv**2, 1))
+            f_temp4[:,:]=f_1[:,:]
+            for r in range(Nr):
+                for j in range(Nv):
+                        if j==0 or j==Nv-1:
+                                f_temp4[r*(Nv)*(Nv)+j*Nv+Nv-1]=f_1[r*(Nv)*(Nv)+(j)*Nv+Nv-1]
+                        else:#elif f_temp4[r*(Nv)*(Nv)+j*Nv+Nv-1]<f_temp4[r*(Nv)*(Nv)+(j-1)*Nv+Nv-1] and f_temp4[r*(Nv)*(Nv)+j*Nv+Nv-1]<f_temp4[r*(Nv)*(Nv)+(j+1)*Nv+Nv-1]:
+                                f_temp4[r*(Nv)*(Nv)+j*Nv+Nv-1]=(1/4)*(f_1[r*(Nv)*(Nv)+(j-1)*Nv+Nv-1]+2*f_1[r*(Nv)*(Nv)+(j)*Nv+Nv-1]+f_1[r*(Nv)*(Nv)+(j+1)*Nv+Nv-1])
+            f_1[:,:]=f_temp4[:,:]
+
+            f_temp4=np.zeros(shape = (Nr*Nv**2, 1))
+            f_temp4[:,:]=f_1[:,:]
+            for r in range(Nr):
+                for j in range(Nv):
+                        if j==0 or j==Nv-1:
+                                f_temp4[r*(Nv)*(Nv)+j*Nv+Nv-2]=f_1[r*(Nv)*(Nv)+(j)*Nv+Nv-2]
+                        else:#elif f_temp4[r*(Nv)*(Nv)+j*Nv+Nv-2]<f_temp4[r*(Nv)*(Nv)+(j-1)*Nv+Nv-2] and f_temp4[r*(Nv)*(Nv)+j*Nv+Nv-2]<f_temp4[r*(Nv)*(Nv)+(j+1)*Nv+Nv-2]:
+                                f_temp4[r*(Nv)*(Nv)+j*Nv+Nv-2]=(1/4)*(f_1[r*(Nv)*(Nv)+(j-1)*Nv+Nv-2]+2*f_1[r*(Nv)*(Nv)+(j)*Nv+Nv-2]+f_1[r*(Nv)*(Nv)+(j+1)*Nv+Nv-2])
+            f_1[:,:]=f_temp4[:,:]
+
+            f_temp4=np.zeros(shape = (Nr*Nv**2, 1))
+            f_temp4[:,:]=f_1[:,:]
+            for r in range(Nr):
+                for j in range(Nv):
+                        if j==0 or j==Nv-1:
+                                f_temp4[r*(Nv)*(Nv)+j*Nv+Nv-3]=f_1[r*(Nv)*(Nv)+(j)*Nv+Nv-3]
+                        else:#elif f_temp4[r*(Nv)*(Nv)+j*Nv+Nv-2]<f_temp4[r*(Nv)*(Nv)+(j-1)*Nv+Nv-2] and f_temp4[r*(Nv)*(Nv)+j*Nv+Nv-2]<f_temp4[r*(Nv)*(Nv)+(j+1)*Nv+Nv-2]:
+                                f_temp4[r*(Nv)*(Nv)+j*Nv+Nv-3]=(1/4)*(f_1[r*(Nv)*(Nv)+(j-1)*Nv+Nv-3]+2*f_1[r*(Nv)*(Nv)+(j)*Nv+Nv-3]+f_1[r*(Nv)*(Nv)+(j+1)*Nv+Nv-3])
+            f_1[:,:]=f_temp4[:,:]
+
                     
             f_temp5=np.zeros(shape = (Nr*Nv**2, 1))
             f_temp5[:,:]=f_1[:,:]
