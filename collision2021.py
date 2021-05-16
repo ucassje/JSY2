@@ -391,7 +391,7 @@ def B(x):
         return B_0(i_solar_r)*(i_solar_r/x)**2*(1+((x-i_solar_r)*Omega/U_solar(x))**2)**0.5
 
 def dlnB(x):
-        return (np.log(B(x+delz))-np.log(B(x-delz)))/(2*delz)
+        return 0#(np.log(B(x+delz))-np.log(B(x-delz)))/(2*delz)
 
 #def electric(x):
 #        return U_solar(x)*dU_solar(x)/(cos(x)**2)+(U_solar(x)**2/cos(x))*dcos_1(x)+(1/v_Ae_0**2)*(Bol_k)/(Me*n(x))*(n(x)*temperature(x)*lntemperature(x)+temperature(x)*n(x)*lnn(x))+(1/v_Ae_0**2)*(Bol_k)/(Me)*dcos(x)/cos(x)*temperature(x)+(1/v_Ae_0**2)*(Bol_k)/(2*Me)*dlnB(x)*temperature(x)+(1/v_Ae_0**2)*(2*Bol_k)/(Me*x)*temperature(x)
@@ -698,7 +698,7 @@ for p in range(1):
         f_temp[:,:]=f_1[:,:]
         kl=50
 
-        timestep=750 #700
+        timestep=800 #700
         Normvalue=np.zeros(shape = (timestep))
         Normvalue_bulk=np.zeros(shape = (timestep))
         for k in range(timestep):
