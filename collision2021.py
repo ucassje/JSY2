@@ -834,7 +834,7 @@ for p in range(1):
                     if r>0:
                             for j in range(Nv):
                                     for i in range(Nv):
-                                            if f_temp5[(r)*(Nv)*(Nv)+j*Nv+i]=<0:
+                                            if f_temp5[(r)*(Nv)*(Nv)+j*Nv+i]<=0:
                                                     f_temp5[(r)*(Nv)*(Nv)+j*Nv+i]=10**(50)
             mini=min(f_temp5)
 
@@ -842,7 +842,7 @@ for p in range(1):
                     if r>0:
                             for j in range(Nv):
                                     for i in range(Nv):
-                                            if f_1[(r)*(Nv)*(Nv)+j*Nv+i]=<0:
+                                            if f_1[(r)*(Nv)*(Nv)+j*Nv+i]<=0:
                                                     f_1[(r)*(Nv)*(Nv)+j*Nv+i]=mini
 
             
