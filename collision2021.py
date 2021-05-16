@@ -707,45 +707,7 @@ for p in range(1):
             f_next=np.zeros(shape = (Nr*Nv**2, 1))
             f_temp1=np.zeros(shape = (Nr*Nv**2, 1))
             f_pre[:,:]=f_1[:,:]
-            if t==0:
-                    d_pal_ne=np.zeros(shape = (Nr*Nv, 1))
-                    for r in range(Nr):
-                        for j in range(Nv):
-                                d_pal_ne[r*(Nv)+j]=abs(f_1[r*(Nv)*(Nv)+j*Nv+1]/f_1[r*(Nv)*(Nv)+j*Nv+2])#abs(f_1[r*(Nv)*(Nv)+j*Nv]-f_1[r*(Nv)*(Nv)+j*Nv+1])
-
-                    d_pal_po=np.zeros(shape = (Nr*Nv, 1))
-                    for r in range(Nr):
-                        for j in range(Nv):
-                                d_pal_po[r*(Nv)+j]=abs(f_1[r*(Nv)*(Nv)+j*Nv+Nv-2]/f_1[r*(Nv)*(Nv)+j*Nv+Nv-3])#abs(f_1[r*(Nv)*(Nv)+j*Nv+Nv-1]-f_1[r*(Nv)*(Nv)+j*Nv+Nv-2])
-
-                    d_per_ne=np.zeros(shape = (Nr*Nv, 1))
-                    for r in range(Nr):
-                        for i in range(Nv):
-                                d_per_ne[r*(Nv)+i]=abs(f_1[r*(Nv)*(Nv)+1*Nv+i]/f_1[r*(Nv)*(Nv)+2*Nv+i])#abs(f_1[r*(Nv)*(Nv)+i]-f_1[r*(Nv)*(Nv)+1*Nv+i])
-
-                    d_per_po=np.zeros(shape = (Nr*Nv, 1))
-                    for r in range(Nr):
-                        for i in range(Nv):
-                                d_per_po[r*(Nv)+i]=abs(f_1[r*(Nv)*(Nv)+(Nv-2)*Nv+i]/f_1[r*(Nv)*(Nv)+(Nv-3)*Nv+i])#abs(f_1[r*(Nv)*(Nv)+(Nv-1)*Nv+i]-f_1[r*(Nv)*(Nv)+(Nv-2)*Nv+i])
-
-                    d_pal_ne_per_ne=np.zeros(shape = (Nr, 1))
-                    for r in range(Nr):
-                        d_pal_ne_per_ne[r]=abs(f_1[r*(Nv)*(Nv)+1*Nv+1]/f_1[r*(Nv)*(Nv)+2*Nv+2])#abs(f_1[r*(Nv)*(Nv)]-f_1[r*(Nv)*(Nv)+1*Nv+1])
-
-                    d_pal_ne_per_po=np.zeros(shape = (Nr, 1))
-                    for r in range(Nr):
-                        d_pal_ne_per_po[r]=abs(f_1[r*(Nv)*(Nv)+(Nv-2)*Nv+1]/f_1[r*(Nv)*(Nv)+(Nv-3)*Nv+2])#abs(f_1[r*(Nv)*(Nv)+(Nv-1)*Nv]-f_1[r*(Nv)*(Nv)+(Nv-2)*Nv+1])          
-
-                    d_pal_po_per_ne=np.zeros(shape = (Nr, 1))
-                    for r in range(Nr):
-                        d_pal_po_per_ne[r]=abs(f_1[r*(Nv)*(Nv)+1*Nv+Nv-2]/f_1[r*(Nv)*(Nv)+2*Nv+Nv-3])#abs(f_1[r*(Nv)*(Nv)+Nv-1]-f_1[r*(Nv)*(Nv)+1*Nv+Nv-2])
-
-                    d_pal_po_per_po=np.zeros(shape = (Nr, 1))
-                    for r in range(Nr):
-                        d_pal_po_per_po[r]=abs(f_1[r*(Nv)*(Nv)+(Nv-2)*Nv+Nv-2]/f_1[r*(Nv)*(Nv)+(Nv-3)*Nv+Nv-3])#abs(f_1[r*(Nv)*(Nv)+(Nv-1)*Nv+Nv-1]-f_1[r*(Nv)*(Nv)+(Nv-2)*Nv+Nv-2])
-                    t=0
-            else:
-                    t=t+1
+            
             f_1=dot(AQ, f_1)       
 
             #f_temp4=np.zeros(shape = (Nr*Nv**2, 1))
@@ -784,6 +746,20 @@ for p in range(1):
 
             f_1[:,:]=f_temp1[:,:]
 
+
+            f_temp4=np.zeros(shape = (Nr*Nv**2, 1))
+            f_temp4[:,:]=f_1[:,:]  
+            for r in range(Nr):
+                for j in range(Nv):
+                        for i in range(Nv):
+                                if per_v[j]>0 and j!=0 and j!=Nv-1 and f_1[(r)*(Nv)*(Nv)+(j)*Nv+i]<f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i]:
+                                        f_temp4[(r)*(Nv)*(Nv)+(j)*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i]
+                                        f_temp4[(r)*(Nv)*(Nv)+(j+1)*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j)*Nv+i]
+                                elif per_v[j]<0 and j!=0 and j!=Nv-1 and f_1[(r)*(Nv)*(Nv)+(j)*Nv+i]>f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i]:
+                                        f_temp4[(r)*(Nv)*(Nv)+(j)*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i]
+                                        f_temp4[(r)*(Nv)*(Nv)+(j+1)*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j)*Nv+i]
+
+            f_1[:,:]=f_temp4[:,:]
             
             if l==50:
                    l=0
