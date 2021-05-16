@@ -707,7 +707,7 @@ for p in range(1):
             f_next=np.zeros(shape = (Nr*Nv**2, 1))
             f_temp1=np.zeros(shape = (Nr*Nv**2, 1))
             f_pre[:,:]=f_1[:,:]
-            if t==50:
+            if t==10:
                     d_pal_ne=np.zeros(shape = (Nr*Nv, 1))
                     for r in range(Nr):
                         for j in range(Nv):
