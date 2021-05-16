@@ -767,7 +767,7 @@ for p in range(1):
                     for r in range(Nr):
                         for j in range(Nv):
                                 for i in range(Nv):
-                                        if pal_v[j]>0 and i!=0 and i!=Nv-1 and f_1[(r)*(Nv)*(Nv)+(j)*Nv+i]<f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+1] and f_1[(r)*(Nv)*(Nv)+(j)*Nv+i]<f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-1]:
+                                        if pal_v[i]>0 and i!=0 and i!=Nv-1 and f_1[(r)*(Nv)*(Nv)+(j)*Nv+i]<f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+1] and f_1[(r)*(Nv)*(Nv)+(j)*Nv+i]<f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-1]:
                                                 f_temp4[(r)*(Nv)*(Nv)+(j)*Nv+i]=0.5*(f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-1]+f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+1])
 
                     f_1[:,:]=f_temp4[:,:]
