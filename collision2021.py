@@ -222,12 +222,7 @@ for r in range(Nr):
 
 
 
-d_pal_po2=np.zeros(shape = (Nr*Nv**2, 1))
-for r in range(Nr):
-        for j in range(Nv):
-                for i in range(Nv):
-                        if i!=0:
-                                d_pal_po2[r*(Nv**2)+j*Nv+i]=abs(f_1[r*(Nv)*(Nv)+j*Nv+i]/f_1[r*(Nv)*(Nv)+j*Nv+i-1])
+
 
 
          
@@ -629,7 +624,7 @@ solu1=np.zeros(shape = (Nv, Nv))
 l=50
 t=0
 
-for p in range(1):
+for p in range(18):
         print(p)
 
         Density_next=np.zeros(shape = (Nr))
@@ -703,7 +698,7 @@ for p in range(1):
         f_temp[:,:]=f_1[:,:]
         kl=50
 
-        timestep=900 #700
+        timestep=50 #700
         Normvalue=np.zeros(shape = (timestep))
         Normvalue_bulk=np.zeros(shape = (timestep))
         for k in range(timestep):
@@ -758,9 +753,9 @@ for p in range(1):
                         for j in range(Nv):
                                 for i in range(Nv):
                                         if per_v[j]>0 and i!=0 and j!=0 and j!=Nv-1 and f_1[(r)*(Nv)*(Nv)+(j)*Nv+i]<f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i]:
-                                                f_temp4[(r)*(Nv)*(Nv)+(j)*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-1]*d_pal_po2[r*(Nv**2)+j*Nv+i]
+                                                f_temp4[(r)*(Nv)*(Nv)+(j)*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-1]*(f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i]/f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i-1])
                                         elif per_v[j]<0 and i!=0 and j!=0 and j!=Nv-1 and f_1[(r)*(Nv)*(Nv)+(j)*Nv+i]<f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i]:
-                                                f_temp4[(r)*(Nv)*(Nv)+(j)*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-1]*d_pal_po2[r*(Nv**2)+j*Nv+i]
+                                                f_temp4[(r)*(Nv)*(Nv)+(j)*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-1]*(f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i]/f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i-1])
 
                     f_1[:,:]=f_temp4[:,:]
 
