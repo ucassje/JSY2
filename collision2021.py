@@ -624,7 +624,7 @@ solu1=np.zeros(shape = (Nv, Nv))
 l=50
 t=0
 
-for p in range(18):
+for p in range(1):
         print(p)
 
         Density_next=np.zeros(shape = (Nr))
@@ -698,7 +698,7 @@ for p in range(18):
         f_temp[:,:]=f_1[:,:]
         kl=50
 
-        timestep=50 #700
+        timestep=900 #700
         Normvalue=np.zeros(shape = (timestep))
         Normvalue_bulk=np.zeros(shape = (timestep))
         for k in range(timestep):
@@ -756,6 +756,11 @@ for p in range(18):
                                                 f_temp4[(r)*(Nv)*(Nv)+(j)*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-1]*(f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i]/f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i-1])
                                         elif per_v[j]<0 and i!=0 and j!=0 and j!=Nv-1 and f_1[(r)*(Nv)*(Nv)+(j)*Nv+i]<f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i]:
                                                 f_temp4[(r)*(Nv)*(Nv)+(j)*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-1]*(f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i]/f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i-1])
+                                        elif j==15 and f_1[(r)*(Nv)*(Nv)+(j)*Nv+i]<f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i]:
+                                                f_temp4[(r)*(Nv)*(Nv)+(j)*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i]
+                                        elif j==14 and f_1[(r)*(Nv)*(Nv)+(j)*Nv+i]<f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i]:
+                                                f_temp4[(r)*(Nv)*(Nv)+(j)*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i]
+                                        
 
                     f_1[:,:]=f_temp4[:,:]
 
