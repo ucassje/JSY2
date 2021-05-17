@@ -752,14 +752,11 @@ for p in range(1):
                     for r in range(Nr):
                         for j in range(Nv):
                                 for i in range(Nv):
-                                        if per_v[j]>0 and i!=0 and j!=0 and j!=Nv-1 and f_1[(r)*(Nv)*(Nv)+(j)*Nv+i]<f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i]:
-                                                f_temp4[(r)*(Nv)*(Nv)+(j)*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-1]*(f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i]/f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i-1])
-                                        elif per_v[j]<0 and i!=0 and j!=0 and j!=Nv-1 and f_1[(r)*(Nv)*(Nv)+(j)*Nv+i]<f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i]:
-                                                f_temp4[(r)*(Nv)*(Nv)+(j)*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-1]*(f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i]/f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i-1])
-                                        elif j==15 and f_1[(r)*(Nv)*(Nv)+(j)*Nv+i]<f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i]:
-                                                f_temp4[(r)*(Nv)*(Nv)+(j)*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i]
-                                        elif j==14 and f_1[(r)*(Nv)*(Nv)+(j)*Nv+i]<f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i]:
-                                                f_temp4[(r)*(Nv)*(Nv)+(j)*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i]
+                                        if per_v[j]>0 and i!=0 and i!=Nv-1 and j!=0 and j!=Nv-1 and f_1[(r)*(Nv)*(Nv)+(j)*Nv+i]<f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i]:
+                                                f_temp4[(r)*(Nv)*(Nv)+(j)*Nv+i]=(1/4)*(f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-1]+f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+1]+f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i]+f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i])
+                                        elif per_v[j]<0 and i!=0 and i!=Nv-1 and j!=0 and j!=Nv-1 and f_1[(r)*(Nv)*(Nv)+(j)*Nv+i]<f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i]:
+                                                f_temp4[(r)*(Nv)*(Nv)+(j)*Nv+i]=(1/4)*(f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-1]+f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+1]+f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i]+f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i])
+
                                         
 
                     f_1[:,:]=f_temp4[:,:]
