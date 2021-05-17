@@ -225,8 +225,9 @@ for r in range(Nr):
 d_pal_po2=np.zeros(shape = (Nr*Nv**2, 1))
 for r in range(Nr):
         for j in range(Nv):
-                if i!=0:
-                        d_pal_po2[r*(Nv**2)+j*Nv+i]=abs(f_1[r*(Nv)*(Nv)+j*Nv+i]/f_1[r*(Nv)*(Nv)+j*Nv+i-1])
+                for i in range(Nv):
+                        if i!=0:
+                                d_pal_po2[r*(Nv**2)+j*Nv+i]=abs(f_1[r*(Nv)*(Nv)+j*Nv+i]/f_1[r*(Nv)*(Nv)+j*Nv+i-1])
 
 
          
