@@ -624,7 +624,7 @@ solu1=np.zeros(shape = (Nv, Nv))
 l=50
 t=0
 
-for p in range(1):
+for p in range(18):
         print(p)
 
         Density_next=np.zeros(shape = (Nr))
@@ -698,7 +698,7 @@ for p in range(1):
         f_temp[:,:]=f_1[:,:]
         kl=50
 
-        timestep=800 #700
+        timestep=50 #700
         Normvalue=np.zeros(shape = (timestep))
         Normvalue_bulk=np.zeros(shape = (timestep))
         for k in range(timestep):
