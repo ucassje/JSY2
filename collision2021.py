@@ -810,7 +810,7 @@ for p in range(1):
                    #plt.text(pal_v[Nv-10],pal_v[Nv-4], r'$Nv=$' "%.2f" % Nv, fontsize=8)
                    #plt.text(pal_v[Nv-10],pal_v[Nv-5], r'$Nr=$' "%.2f" % Nr, fontsize=8)
                    plt.colorbar(label=r'$Log(F/F_{MAX})$')
-                   plt.savefig(f'{path_current}r=10/{k}.png')
+                   plt.savefig(f'{path_current}r=1/{k}.png')
                    plt.clf()
                    plt.close()
 
@@ -845,7 +845,7 @@ for p in range(1):
                    #plt.text(pal_v[Nv-10],pal_v[Nv-4], r'$Nv=$' "%.2f" % Nv, fontsize=8)
                    #plt.text(pal_v[Nv-10],pal_v[Nv-5], r'$Nr=$' "%.2f" % Nr, fontsize=8)
                    plt.colorbar(label=r'$Log(F/F_{MAX})$')
-                   plt.savefig(f'{path_current}r=10/{k}.png')
+                   plt.savefig(f'{path_current}r=34/{k}.png')
                    plt.clf()
                    plt.close()
             else:
