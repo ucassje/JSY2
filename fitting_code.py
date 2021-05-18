@@ -58,7 +58,7 @@ Fz=delt/delz
 U_f=800000./v_Ae_0
 T_e=10*10**5; #5*(10**(5))
 T_e_back=10*(10**(5));
-Bol_k=1.3807*(10**(-23));
+Bol_k=1.3807*(10**(-23))
 kappa=2
 v_th_e=((2.*kappa-3)*Bol_k*T_e/(kappa*Me))**0.5/v_Ae_0
 v_th_p=((2.*kappa-3)*Bol_k*T_e/(kappa*Mp))**0.5/v_Ae_0
@@ -183,7 +183,7 @@ for r in range(Nr):
     kappac[r] = zx['kappac'].value
     kappas[r] = zx['kappas'].value
 
-    v_Ae[r]=(B(z[r])*10**(-9))/(4.*np.pi*10**(-7)*9.1094*10**(-31)*Density[r])**0.5
+    v_Ae[r]=(B(z[r])*10**(-9))/(4.*np.pi*10**(-7)*9.1094e-31*Density[r])**0.5
     beta_c[r]=8*np.pi*10**(-7)*Bol_k*Density[r]*nc[r]*Tc_pal[r]/(B(z[r])*10**(-9))**2
     beta_s[r]=8*np.pi*10**(-7)*Bol_k*Density[r]*ns[r]*Ts_pal[r]/(B(z[r])*10**(-9))**2
     
