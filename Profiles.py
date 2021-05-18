@@ -17,7 +17,7 @@ U_f=800
 U_f2=800000
 Omega=2.7*10**(-6)
 i_solar_r=5
-f_solar_r=50
+f_solar_r=20
 z=np.linspace(i_solar_r, f_solar_r, 100)
 T_e=1.0;
 path_home="/Users/user/Desktop/profiles/"
@@ -34,7 +34,7 @@ def U_solar2(r):
 
 
 def B_0(r):
-        return 10*(215/r)**2
+        return 1*(215/r)**2
 
 def n_0(r):
         return 1*(215/r)**2
