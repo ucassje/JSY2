@@ -847,10 +847,10 @@ for p in range(1):
 
                    for j in range(Nv):
                         for i in range(Nv):
-                               if f_1[(34)*(Nv)*(Nv)+(j)*Nv+i]/np.max(f_1)>1:
+                               if f_1[(29)*(Nv)*(Nv)+(j)*Nv+i]/np.max(f_1)>1:
                                        solu1[j,i]=0
-                               elif f_1[(34)*(Nv)*(Nv)+(j)*Nv+i]/np.max(f_1)>10**(-8):
-                                       solu1[j,i]=np.log10(f_1[(34)*(Nv)*(Nv)+(j)*Nv+i]/np.max(f_1))
+                               elif f_1[(29)*(Nv)*(Nv)+(j)*Nv+i]/np.max(f_1)>10**(-8):
+                                       solu1[j,i]=np.log10(f_1[(29)*(Nv)*(Nv)+(j)*Nv+i]/np.max(f_1))
                                else:
                                        solu1[j,i]=-10
                    fig = plt.figure()
@@ -871,7 +871,7 @@ for p in range(1):
                    plt.tick_params(labelsize=8)
                    plt.text(pal_v[Nv-6],0.1,r'$\mathcal{v}_\parallel/\mathcal{v}_{Ae0}$', fontsize=12)
                    plt.text(0.,pal_v[Nv-2],r'$\mathcal{v}_\perp/\mathcal{v}_{Ae0}$', fontsize=12)
-                   plt.text(pal_v[Nv-9],pal_v[Nv-3], r'$r/r_s=$' "%.2f" % z[34], fontsize=12)
+                   plt.text(pal_v[Nv-9],pal_v[Nv-3], r'$r/r_s=$' "%.2f" % z[29], fontsize=12)
                    #plt.text(pal_v[Nv-10],pal_v[Nv-2], r'$T(\mathcal{v}_{Ae0}/r_s):$' "%.2f" % nu, fontsize=8)
                    #plt.text(pal_v[Nv-10],pal_v[Nv-4], r'$Nv=$' "%.2f" % Nv, fontsize=8)
                    #plt.text(pal_v[Nv-10],pal_v[Nv-5], r'$Nr=$' "%.2f" % Nr, fontsize=8)
