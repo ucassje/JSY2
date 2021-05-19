@@ -18,7 +18,7 @@ from lmfit import Parameters, fit_report, minimize
 #from lmfit import Model
 import lmfit
 
-Nv=30  #velocity step number
+Nv=36  #velocity step number
 i_solar_r=5 #10
 f_solar_r=20 #30
 path_home="/Users/user/Desktop/JSY2/"
@@ -692,7 +692,7 @@ for p in range(1):
         AQ=dot(AAA_1,QQQ)
         del AAA_1
         del QQQ
-
+        print(AQ)
 
         X2,Y2 = np.meshgrid(pal_v,per_v)
         cont_lev = np.linspace(-10,0,25)
