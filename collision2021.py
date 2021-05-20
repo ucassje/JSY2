@@ -702,7 +702,7 @@ for p in range(1):
         f_temp[:,:]=f_1[:,:]
         kl=50
 
-        timestep=1000 #700
+        timestep=750 #700
         Normvalue=np.zeros(shape = (timestep))
         Normvalue_bulk=np.zeros(shape = (timestep))
         for k in range(timestep):
@@ -748,13 +748,13 @@ for p in range(1):
                                             if j==Nv-1 and i!=0 and i!=Nv-1:
                                                     f_temp1[(r)*(Nv)*(Nv)+j*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i+1]*(f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i-1]/f_1[(r)*(Nv)*(Nv)+(j-2)*Nv+i])#*d_per_po[r*(Nv)+i]#2*f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i]-f_1[(r)*(Nv)*(Nv)+(j-2)*Nv+i] #np.max(f_1)*10**(2*np.log10(f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i]/np.max(f_1))-np.log10(f_1[(r)*(Nv)*(Nv)+(j-2)*Nv+i]/np.max(f_1)))                                #((per_v[j]-per_v[j-2])/(per_v[j-2]-per_v[j-1]))*(f_1[(r)*(Nv)*(Nv)+(j-2)*Nv+i]-f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i])+f_1[(r)*(Nv)*(Nv)+(j-2)*Nv+i]                                                                                
                                             if i==0 and j==0:
-                                                    f_temp1[(r)*(Nv)*(Nv)+j*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i+1]*(f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i+1]/f_1[(r)*(Nv)*(Nv)+(j+2)*Nv+i+2])
+                                                    f_temp1[(r)*(Nv)*(Nv)+j*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+1]*(f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+1]/f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+2])
                                             if i==Nv-1 and j==Nv-1:
-                                                    f_temp1[(r)*(Nv)*(Nv)+j*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i-1]*(f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i-1]/f_1[(r)*(Nv)*(Nv)+(j-2)*Nv+i-2])
+                                                    f_temp1[(r)*(Nv)*(Nv)+j*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-1]*(f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-1]/f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-2])
                                             if i==0 and j==Nv-1:
-                                                    f_temp1[(r)*(Nv)*(Nv)+j*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i+1]*(f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i+1]/f_1[(r)*(Nv)*(Nv)+(j-2)*Nv+i+2])
+                                                    f_temp1[(r)*(Nv)*(Nv)+j*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+1]*(f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+1]/f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+2])
                                             if i==Nv-1 and j==0:
-                                                    f_temp1[(r)*(Nv)*(Nv)+j*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i-1]*(f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i-1]/f_1[(r)*(Nv)*(Nv)+(j+2)*Nv+i-2])
+                                                    f_temp1[(r)*(Nv)*(Nv)+j*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-1]*(f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-1]/f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-2])
             f_1[:,:]=f_temp1[:,:]
 
 
