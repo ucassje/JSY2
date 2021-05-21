@@ -43,7 +43,7 @@ pal_v = np.linspace(-Mv, Mv, Nv)
 per_v = np.linspace(-Mv, Mv, Nv)
 delv=pal_v[1]-pal_v[0]
 print(delv)
-Nr=30      #radial step number
+Nr=40      #radial step number
 r_s=696340000.
 z=np.linspace(i_solar_r, f_solar_r, Nr)
 delz=z[1]-z[0]
@@ -756,6 +756,17 @@ for p in range(1):
                                             if i==Nv-1 and j==0:
                                                     f_temp1[(r)*(Nv)*(Nv)+j*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-1]*(f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-1]/f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-2])
             f_1[:,:]=f_temp1[:,:]
+
+
+
+            f_temp5=np.zeros(shape = (Nr*Nv**2, 1))
+            f_temp5[:,:]=f_1[:,:]
+            for r in range(Nr):
+                    if r>0:
+                            for j in range(Nv):
+                                    for i in range(Nv):
+                                            if f_temp5[(r)*(Nv)*(Nv)+j*Nv+i]/np.max(f_temp5)<=10**(-8):
+                                                    f_temp5[(r)*(Nv)*(Nv)+j*Nv+i]=10**(-10)*np.max(f_temp5)
 
 
             f_temp5=np.zeros(shape = (Nr*Nv**2, 1))
