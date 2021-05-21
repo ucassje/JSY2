@@ -230,7 +230,7 @@ for r in range(Nr):
 
 
          
-Col=4*np.pi/(r_s**2*v_Ae_0**4)*(q**2/(4*np.pi*epsilon*Me))**2*25
+Col=0#4*np.pi/(r_s**2*v_Ae_0**4)*(q**2/(4*np.pi*epsilon*Me))**2*25
 
 def Collision_Core(a,b,r):
     kappa=50.
