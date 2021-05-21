@@ -377,7 +377,7 @@ def H_perp(a,b,r):
 
 
 def rect_v(x):
-	return 1#0 if abs(x)>=abs(pal_v[0]) else 1
+	return 0 if abs(x)>=abs(pal_v[0]) else 1
 
 def sin(x):
         return (1/(1+(U_solar(x)/Omega*(1/x))**2)**0.5)
