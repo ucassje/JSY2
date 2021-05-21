@@ -43,7 +43,7 @@ pal_v = np.linspace(-Mv, Mv, Nv)
 per_v = np.linspace(-Mv, Mv, Nv)
 delv=pal_v[1]-pal_v[0]
 print(delv)
-Nr=40      #radial step number
+Nr=30      #radial step number
 r_s=696340000.
 z=np.linspace(i_solar_r, f_solar_r, Nr)
 delz=z[1]-z[0]
@@ -113,7 +113,7 @@ def kappa_v_th_function(T):
         return ((2.*kappa-3)*Bol_k*T/(kappa*Me))**0.5/v_Ae_0
 
 def Kappa_Initial_Core(a,b,r):
-   kappac=4 #2
+   kappac=8 #2
    return (U_solar(z[0])/U_solar(r))*(r_s**3)*(n(r)*10**6)*(v_th_function(temperature(r))*v_th_function(temperature(r))**2)**(-1)*(2/(np.pi*(2*kappac-3)))**1.5*(gamma(kappac+1)/gamma(kappac-0.5))*(1.+(2/(2*kappac-3))*((b/v_th_function(temperature(r)))**2)+(2/(2*kappac-3))*((a/v_th_function(temperature(r)))**2))**(-kappac-1.) #(U_f/U_solar(r))*(r_s**3)*(n(r)*10**6)*(2*np.pi*kappa_v_th_function(temperature(r))**3*kappa**1.5)**(-1)*(gamma(kappa+1)/(gamma(kappa-0.5)*gamma(1.5)))*(1.+((b/kappa_v_th_function(temperature(r)))**2)/kappa+((a/kappa_v_th_function(temperature(r)))**2)/kappa)**(-kappa-1.)#+10**(-6)*(r_s**3)*(n(r)*10**6)*(np.pi**1.5*kappa_v_th_function(temperature(r))**3)**(-1)*(gamma(kappa+1)/(gamma(kappa-0.5)*kappa**1.5))*(1.+((b/(kappa_v_th_function(temperature(r))*100000))**2)/kappa+((a/(kappa_v_th_function(temperature(r))*100000))**2)/kappa)**(-kappa-1.) #(((7.5*10**9/r_s)/c)**2+0.05*np.exp(-(c-23)**2))*
 #(r_s**3)*(n(r)*10**6)/(v_th_function(temperature(r))**3*np.pi**(3/2))*np.exp(-a**2/v_th_function(temperature(r))**2-b**2/v_th_function(temperature(r))**2)
          
@@ -623,7 +623,7 @@ cont_lev = np.linspace(-10,0,25)
 
 solu1=np.zeros(shape = (Nv, Nv))
 
-f_1 = np.load('data_next.npy')
+#f_1 = np.load('data_next.npy')
 
 l=20
 t=0
@@ -702,7 +702,7 @@ for p in range(1):
         f_temp[:,:]=f_1[:,:]
         kl=50
 
-        timestep=300 #700
+        timestep=1000 #700
         Normvalue=np.zeros(shape = (timestep))
         Normvalue_bulk=np.zeros(shape = (timestep))
         for k in range(timestep):
@@ -834,14 +834,14 @@ for p in range(1):
 
             #        f_1[:,:]=f_temp4[:,:]
             
-            if l==20:
+            if l==10:
                    l=1
                    print("H")
                    for j in range(Nv):
                         for i in range(Nv):
                                if f_1[(1)*(Nv)*(Nv)+(j)*Nv+i]/np.max(f_1)>1:
                                        solu1[j,i]=0
-                               elif f_1[(1)*(Nv)*(Nv)+(j)*Nv+i]/np.max(f_1)>10**(-8):
+                               elif f_1[(1)*(Nv)*(Nv)+(j)*Nv+i]/np.max(f_1)>10**(-10):
                                        solu1[j,i]=np.log10(f_1[(1)*(Nv)*(Nv)+(j)*Nv+i]/np.max(f_1))
                                else:
                                        solu1[j,i]=-10
@@ -876,7 +876,7 @@ for p in range(1):
                         for i in range(Nv):
                                if f_1[(29)*(Nv)*(Nv)+(j)*Nv+i]/np.max(f_1)>1:
                                        solu1[j,i]=0
-                               elif f_1[(29)*(Nv)*(Nv)+(j)*Nv+i]/np.max(f_1)>10**(-8):
+                               elif f_1[(29)*(Nv)*(Nv)+(j)*Nv+i]/np.max(f_1)>10**(-10):
                                        solu1[j,i]=np.log10(f_1[(29)*(Nv)*(Nv)+(j)*Nv+i]/np.max(f_1))
                                else:
                                        solu1[j,i]=-10
@@ -998,7 +998,7 @@ for r in range(Nr):
        for i in range(Nv):
                if f_1[(r)*(Nv)*(Nv)+(j)*Nv+i]/np.max(f_1)>1:
                        solu1[j,i]=0
-               elif f_1[(r)*(Nv)*(Nv)+(j)*Nv+i]/np.max(f_1)>10**(-8):
+               elif f_1[(r)*(Nv)*(Nv)+(j)*Nv+i]/np.max(f_1)>10**(-10):
                        solu1[j,i]=np.log10(f_1[(r)*(Nv)*(Nv)+(j)*Nv+i]/np.max(f_1))
                else:
                        solu1[j,i]=-10
