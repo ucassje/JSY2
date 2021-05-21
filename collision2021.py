@@ -783,7 +783,7 @@ for p in range(1):
                                     for i in range(Nv):
                                             if f_temp5[(r)*(Nv)*(Nv)+j*Nv+i]/np.max(f_temp5)<=10**(-6):
                                                     f_temp5[(r)*(Nv)*(Nv)+j*Nv+i]=10**(-20)*np.max(f_temp5)
-
+            f_1[:,:]=f_temp5[:,:]
 
             f_temp5=np.zeros(shape = (Nr*Nv**2, 1))
             f_temp5[:,:]=f_1[:,:]
