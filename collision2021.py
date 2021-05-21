@@ -625,7 +625,7 @@ solu1=np.zeros(shape = (Nv, Nv))
 
 #f_1 = np.load('data_next.npy')
 
-l=20
+l=10
 t=0
 
 for p in range(1):
