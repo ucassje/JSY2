@@ -791,6 +791,23 @@ for p in range(1):
             f_1[:,:]=f_temp1[:,:]
 
 
+            f_temp5=np.zeros(shape = (Nr*Nv**2, 1))
+            f_temp5[:,:]=f_1[:,:]
+            for r in range(Nr):
+                    if r>0:
+                            for j in range(Nv):
+                                    for i in range(Nv):
+                                            if f_temp5[(r)*(Nv)*(Nv)+j*Nv+i]<0:
+                                                    f_temp5[(r)*(Nv)*(Nv)+j*Nv+i]=10**(50)
+            mini=min(f_temp5)
+
+            for r in range(Nr):
+                    if r>0:
+                            for j in range(Nv):
+                                    for i in range(Nv):
+                                            if f_1[(r)*(Nv)*(Nv)+j*Nv+i]<0:
+                                                    f_1[(r)*(Nv)*(Nv)+j*Nv+i]=mini
+            
             #f_temp1[:,:]=f_1[:,:]
             #for r in range(Nr):                                             #Von neumann boundary condition for v-derivative
             #    if r>0:
