@@ -627,6 +627,31 @@ f_1 = np.load('data_next.npy')
 
 
 
+
+
+
+X2,Y2 = np.meshgrid(pal_v,per_v)
+cont_lev = np.linspace(-10,0,25)
+
+
+
+
+
+X2,Y2 = np.meshgrid(pal_v,per_v)
+X1,Y1 = np.meshgrid(pal_v_num,per_v_num)
+solu1=np.zeros(shape = (Nv, Nv))
+#per_v2 = np.linspace(0, Mv, Nv//2)
+#X2,Y2 = np.meshgrid(pal_v,per_v2)
+
+solu1_num=np.zeros(shape = (number, number))
+solu2=np.zeros(shape = (Nv))
+solu3=np.zeros(shape = (Nv))
+solu4=np.zeros(shape = (Nv))
+cont_lev = np.linspace(-10,0,25)
+difference=np.zeros(shape = ((Nr)*(Nv)*(Nv), 1))
+
+
+
 for r in range(Nr):
    for i in range(Nv):
         solu2[i]=np.log10(f_1[(r)*(Nv)*(Nv)+(17)*Nv+i]/np.max(f_1))
