@@ -638,12 +638,12 @@ cont_lev = np.linspace(-10,0,25)
 
 
 X2,Y2 = np.meshgrid(pal_v,per_v)
-X1,Y1 = np.meshgrid(pal_v_num,per_v_num)
+
 solu1=np.zeros(shape = (Nv, Nv))
 #per_v2 = np.linspace(0, Mv, Nv//2)
 #X2,Y2 = np.meshgrid(pal_v,per_v2)
 
-solu1_num=np.zeros(shape = (number, number))
+
 solu2=np.zeros(shape = (Nv))
 solu3=np.zeros(shape = (Nv))
 solu4=np.zeros(shape = (Nv))
