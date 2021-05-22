@@ -768,14 +768,26 @@ for p in range(1):
                                                 f_temp1[(r)*(Nv)*(Nv)+j*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i+1]*(f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i-1]/f_1[(r)*(Nv)*(Nv)+(j+2)*Nv+i])#2*f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i]-f_1[(r)*(Nv)*(Nv)+(j+2)*Nv+i] #np.max(f_1)*10**(2*np.log10(f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i]/np.max(f_1))-np.log10(f_1[(r)*(Nv)*(Nv)+(j+2)*Nv+i]/np.max(f_1)))                            #((per_v[j]-per_v[j+2])/(per_v[j+2]-per_v[j+1]))*(f_1[(r)*(Nv)*(Nv)+(j+2)*Nv+i]-f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i])+f_1[(r)*(Nv)*(Nv)+(j+2)*Nv+i] 
                                         if j==Nv-1 and i!=0 and i!=Nv-1:
                                                 f_temp1[(r)*(Nv)*(Nv)+j*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i+1]*(f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i-1]/f_1[(r)*(Nv)*(Nv)+(j-2)*Nv+i])#2*f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i]-f_1[(r)*(Nv)*(Nv)+(j-2)*Nv+i] #np.max(f_1)*10**(2*np.log10(f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i]/np.max(f_1))-np.log10(f_1[(r)*(Nv)*(Nv)+(j-2)*Nv+i]/np.max(f_1)))                                #((per_v[j]-per_v[j-2])/(per_v[j-2]-per_v[j-1]))*(f_1[(r)*(Nv)*(Nv)+(j-2)*Nv+i]-f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i])+f_1[(r)*(Nv)*(Nv)+(j-2)*Nv+i]                                                                                
-                                        if j==0 and i==0:
+
+                                        if j==0 and i==0 and (f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+1]/f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+2])<1:
                                                 f_temp1[(r)*(Nv)*(Nv)+j*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+1]*(f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+1]/f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+2])
-                                        if j==Nv-1 and i==Nv-1:
+                                        if j==0 and i==0 and (f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+1]/f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+2])>1:
+                                                f_temp1[(r)*(Nv)*(Nv)+j*Nv+i]=-0.1
+                                                
+                                        if j==Nv-1 and i==Nv-1 and (f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-1]/f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-2])<1:
                                                 f_temp1[(r)*(Nv)*(Nv)+j*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-1]*(f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-1]/f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-2])
-                                        if j==0 and i==Nv-1:
+                                        if j==Nv-1 and i==Nv-1 and (f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-1]/f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-2])>1:
+                                                f_temp1[(r)*(Nv)*(Nv)+j*Nv+i]=-0.1
+
+                                        if j==0 and i==Nv-1 and (f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-1]/f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-2])<1:
                                                 f_temp1[(r)*(Nv)*(Nv)+j*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-1]*(f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-1]/f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-2])
-                                        if j==Nv-1 and i==0:
+                                        if j==0 and i==Nv-1 and (f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-1]/f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-2])>1:
+                                                f_temp1[(r)*(Nv)*(Nv)+j*Nv+i]=-0.1
+                                                
+                                        if j==Nv-1 and i==0 and (f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+1]/f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+2])<1:
                                                 f_temp1[(r)*(Nv)*(Nv)+j*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+1]*(f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+1]/f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+2])
+                                        if j==Nv-1 and i==0 and (f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+1]/f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+2])>1:
+                                                f_temp1[(r)*(Nv)*(Nv)+j*Nv+i]=-0.1
             f_1[:,:]=f_temp1[:,:]
 
 
@@ -948,6 +960,42 @@ for p in range(1):
                    plt.savefig(f'{path_current}r=1/{k}.png')
                    plt.clf()
                    plt.close()
+
+                   for j in range(Nv):
+                        for i in range(Nv):
+                               if f_1[(15)*(Nv)*(Nv)+(j)*Nv+i]/np.max(f_1)>1:
+                                       solu1[j,i]=0
+                               elif f_1[(15)*(Nv)*(Nv)+(j)*Nv+i]/np.max(f_1)>10**(-10):
+                                       solu1[j,i]=np.log10(f_1[(29)*(Nv)*(Nv)+(j)*Nv+i]/np.max(f_1))
+                               else:
+                                       solu1[j,i]=-10
+                   fig = plt.figure()
+                   fig.set_dpi(500)
+                   plt.contourf(X2, Y2,solu1, cont_lev,cmap='Blues');
+                   ax = plt.gca()
+                   ax.spines['left'].set_position('center')
+                   ax.spines['left'].set_smart_bounds(True)
+                   ax.spines['bottom'].set_position('zero')
+                   ax.spines['bottom'].set_smart_bounds(True)
+                   ax.spines['right'].set_color('none')
+                   ax.spines['top'].set_color('none')
+                   ax.xaxis.set_ticks_position('bottom')
+                   plt.axis('equal')
+                   ax.xaxis.set_ticks_position('bottom')
+                   ax.yaxis.set_ticks_position('left')
+                   plt.rc('font', size=8)
+                   plt.tick_params(labelsize=8)
+                   plt.text(pal_v[Nv-6],0.1,r'$\mathcal{v}_\parallel/\mathcal{v}_{Ae0}$', fontsize=12)
+                   plt.text(0.,pal_v[Nv-2],r'$\mathcal{v}_\perp/\mathcal{v}_{Ae0}$', fontsize=12)
+                   plt.text(pal_v[Nv-9],pal_v[Nv-3], r'$r/r_s=$' "%.2f" % z[15], fontsize=12)
+                   #plt.text(pal_v[Nv-10],pal_v[Nv-2], r'$T(\mathcal{v}_{Ae0}/r_s):$' "%.2f" % nu, fontsize=8)
+                   #plt.text(pal_v[Nv-10],pal_v[Nv-4], r'$Nv=$' "%.2f" % Nv, fontsize=8)
+                   #plt.text(pal_v[Nv-10],pal_v[Nv-5], r'$Nr=$' "%.2f" % Nr, fontsize=8)
+                   plt.colorbar(label=r'$Log(F/F_{MAX})$')
+                   plt.savefig(f'{path_current}r=15/{k}.png')
+                   plt.clf()
+                   plt.close()
+
 
                    for j in range(Nv):
                         for i in range(Nv):
