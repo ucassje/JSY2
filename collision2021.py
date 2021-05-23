@@ -737,16 +737,30 @@ for p in range(1):
                 if r>0:
                         for j in range(Nv):                      
                                 for i in range(Nv):
-                                        if pal_v[i]>0 and abs(per_v[j])>2 and i!=Nv-1 and f_1[(r)*(Nv)*(Nv)+(j)*Nv]>f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-1]:
+                                        if pal_v[i]>0 and abs(per_v[j])>2 and i!=Nv-1 and f_1[(r)*(Nv)*(Nv)+(j)*Nv+i]>f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-1]:
                                                 f_temp1[(r)*(Nv)*(Nv)+j*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-1]*(f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-1]/f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-2])#f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i+1]*(f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i+1]/f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+2]) #4*f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i+1]+4*f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i+1]+4*f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+3]-4*f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+2]-4*f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+1]-f_1[(r)*(Nv)*(Nv)+(j+2)*Nv+i+2]-f_1[(r)*(Nv)*(Nv)+(j-2)*Nv+i+2]-f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+4]#2*f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+1]-f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+2] #np.max(f_1)*10**(2*np.log10(f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+1]/np.max(f_1))-np.log10(f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+2]/np.max(f_1)))    #np.max(f_1)*10**((pal_v[i]-pal_v[i+2])/(pal_v[i+2]-pal_v[i+1]))*(np.log10(f_1[(r)*(Nv)*(Nv)+j*Nv+i+2]/np.max(f_1))-np.log10(f_1[(r)*(Nv)*(Nv)+j*Nv+i+1]/np.max(f_1)))+np.log10(f_1[(r)*(Nv)*(Nv)+j*Nv+i+2]/np.max(f_1))                               #((pal_v[i]-pal_v[i+2])/(pal_v[i+2]-pal_v[i+1]))*(f_1[(r)*(Nv)*(Nv)+j*Nv+i+2]-f_1[(r)*(Nv)*(Nv)+j*Nv+i+1])+f_1[(r)*(Nv)*(Nv)+j*Nv+i+2]                                                                                                                                                                 
             f_1[:,:]=f_temp1[:,:]
 
-            #f_temp4=np.zeros(shape = (Nr*Nv**2, 1))
-            #f_temp4[:,:]=f_1[:,:]                                
-            #for r in range(Nr-1):
-            #            for j in range(Nv):
-            #                    f_temp4[(r+1)*(Nv)*(Nv)+j*Nv+Nv-1]=f_pre[(r+1)*(Nv)*(Nv)+j*Nv+Nv-1]-(U_solar(z[r+1])+pal_v[Nv-1]*cos(z[r+1]))*Fz*(f_pre[(r+1)*(Nv)*(Nv)+j*Nv+Nv-1]-f_pre[(r)*(Nv)*(Nv)+j*Nv+Nv-1])                       
-            #f_1[:,:]=f_temp4[:,:]
+            #f_temp1=np.zeros(shape = (Nr*Nv**2, 1))
+            #f_temp1[:,:]=f_1[:,:]
+            #for r in range(Nr):                                             #Von neumann boundary condition for v-derivative
+            #    if r>0:
+            #            for j in range(Nv):                      
+            #                    for i in range(Nv):
+            #                            if pal_v[i]>0 and per_v[j]>2 and j!=Nv-1 and f_1[(r)*(Nv)*(Nv)+(j)*Nv+i]>f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i]:
+            #                                    f_temp1[(r)*(Nv)*(Nv)+j*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i]*(f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i]/f_1[(r)*(Nv)*(Nv)+(j-2)*Nv+i])#f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i+1]*(f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i+1]/f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+2]) #4*f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i+1]+4*f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i+1]+4*f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+3]-4*f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+2]-4*f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+1]-f_1[(r)*(Nv)*(Nv)+(j+2)*Nv+i+2]-f_1[(r)*(Nv)*(Nv)+(j-2)*Nv+i+2]-f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+4]#2*f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+1]-f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+2] #np.max(f_1)*10**(2*np.log10(f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+1]/np.max(f_1))-np.log10(f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+2]/np.max(f_1)))    #np.max(f_1)*10**((pal_v[i]-pal_v[i+2])/(pal_v[i+2]-pal_v[i+1]))*(np.log10(f_1[(r)*(Nv)*(Nv)+j*Nv+i+2]/np.max(f_1))-np.log10(f_1[(r)*(Nv)*(Nv)+j*Nv+i+1]/np.max(f_1)))+np.log10(f_1[(r)*(Nv)*(Nv)+j*Nv+i+2]/np.max(f_1))                               #((pal_v[i]-pal_v[i+2])/(pal_v[i+2]-pal_v[i+1]))*(f_1[(r)*(Nv)*(Nv)+j*Nv+i+2]-f_1[(r)*(Nv)*(Nv)+j*Nv+i+1])+f_1[(r)*(Nv)*(Nv)+j*Nv+i+2]                                                                                                                                                                 
+            #f_1[:,:]=f_temp1[:,:]
+
+            #f_temp1=np.zeros(shape = (Nr*Nv**2, 1))
+            #f_temp1[:,:]=f_1[:,:]
+            #for r in range(Nr):                                             #Von neumann boundary condition for v-derivative
+            #    if r>0:
+            #            for j in range(Nv):                      
+            #                    for i in range(Nv):
+            #                            if pal_v[i]>0 and per_v[j]<-2 and j!=0 and f_1[(r)*(Nv)*(Nv)+(j)*Nv+i]>f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i]:
+            #                                    f_temp1[(r)*(Nv)*(Nv)+j*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i]*(f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i]/f_1[(r)*(Nv)*(Nv)+(j+2)*Nv+i])#f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i+1]*(f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i+1]/f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+2]) #4*f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i+1]+4*f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i+1]+4*f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+3]-4*f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+2]-4*f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+1]-f_1[(r)*(Nv)*(Nv)+(j+2)*Nv+i+2]-f_1[(r)*(Nv)*(Nv)+(j-2)*Nv+i+2]-f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+4]#2*f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+1]-f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+2] #np.max(f_1)*10**(2*np.log10(f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+1]/np.max(f_1))-np.log10(f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+2]/np.max(f_1)))    #np.max(f_1)*10**((pal_v[i]-pal_v[i+2])/(pal_v[i+2]-pal_v[i+1]))*(np.log10(f_1[(r)*(Nv)*(Nv)+j*Nv+i+2]/np.max(f_1))-np.log10(f_1[(r)*(Nv)*(Nv)+j*Nv+i+1]/np.max(f_1)))+np.log10(f_1[(r)*(Nv)*(Nv)+j*Nv+i+2]/np.max(f_1))                               #((pal_v[i]-pal_v[i+2])/(pal_v[i+2]-pal_v[i+1]))*(f_1[(r)*(Nv)*(Nv)+j*Nv+i+2]-f_1[(r)*(Nv)*(Nv)+j*Nv+i+1])+f_1[(r)*(Nv)*(Nv)+j*Nv+i+2]                                                                                                                                                                 
+            #f_1[:,:]=f_temp1[:,:]
+
 
 
 
