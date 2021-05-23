@@ -623,7 +623,7 @@ cont_lev = np.linspace(-10,0,25)
 
 solu1=np.zeros(shape = (Nv, Nv))
 
-f_1 = np.load('data_next.npy')
+#f_1 = np.load('data_next.npy')
 
 l=10
 t=0
@@ -702,7 +702,7 @@ for p in range(1):
         f_temp[:,:]=f_1[:,:]
         kl=50
 
-        timestep=50 #700
+        timestep=900 #700
         Normvalue=np.zeros(shape = (timestep))
         Normvalue_bulk=np.zeros(shape = (timestep))
         for k in range(timestep):
