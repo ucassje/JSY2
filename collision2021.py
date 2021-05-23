@@ -395,7 +395,7 @@ def B(x):
         return B_0(i_solar_r)*(i_solar_r/x)**2*(1+((x-i_solar_r)*Omega/U_solar(x))**2)**0.5
 
 def dlnB(x):
-        return (np.log(B(x+delz))-np.log(B(x-delz)))/(2*delz)
+        return 0#(np.log(B(x+delz))-np.log(B(x-delz)))/(2*delz)
 
 #def electric(x):
 #        return U_solar(x)*dU_solar(x)/(cos(x)**2)+(U_solar(x)**2/cos(x))*dcos_1(x)+(1/v_Ae_0**2)*(Bol_k)/(Me*n(x))*(n(x)*temperature(x)*lntemperature(x)+temperature(x)*n(x)*lnn(x))+(1/v_Ae_0**2)*(Bol_k)/(Me)*dcos(x)/cos(x)*temperature(x)+(1/v_Ae_0**2)*(Bol_k)/(2*Me)*dlnB(x)*temperature(x)+(1/v_Ae_0**2)*(2*Bol_k)/(Me*x)*temperature(x)
@@ -404,7 +404,7 @@ def electric(x):
         for r in range(Nr):
                 if abs(x-z[r])<0.5*delz:
                         l=r
-        return U_solar(x)*dU_solar(x)/(cos(x)**2)+(U_solar(x)**2/cos(x))*dcos_1(x)+(1/v_Ae_0**2)*(Bol_k)/(Me*Density_next[l])*(Density_next[l]*Temperature_pal[l]-Density_next[l-1]*Temperature_pal[l-1])/delz+(1/v_Ae_0**2)*(Bol_k)/(Me)*dcos(x)/cos(x)*Temperature_pal[l]+(1/v_Ae_0**2)*(Bol_k)/(2*Me)*dlnB(x)*Temperature_per[l]+(1/v_Ae_0**2)*(2*Bol_k)/(Me*x)*Temperature_pal[r]#+(1/(cos(x)*Density_next[l]))*(Density_next[l]*Bulk_next[l]-Density_pre[l]*Bulk_pre[l])/(10*delt)#+(Bulk_next[l]/cos(x))*dU_solar(x)#+Bulk_next[l]*(dU_solar(x)/cos(x)+U_solar(x)*dcos_1(x))#+(U_solar(x)/cos(x))*Bulk_next[l]/x#+(U_solar(x)/(cos(x)*Density_next[l]))*(Density_next[l]*Bulk_next[l]-Density_next[l-1]*Bulk_next[l-1])/delz
+        return 0#U_solar(x)*dU_solar(x)/(cos(x)**2)+(U_solar(x)**2/cos(x))*dcos_1(x)+(1/v_Ae_0**2)*(Bol_k)/(Me*Density_next[l])*(Density_next[l]*Temperature_pal[l]-Density_next[l-1]*Temperature_pal[l-1])/delz+(1/v_Ae_0**2)*(Bol_k)/(Me)*dcos(x)/cos(x)*Temperature_pal[l]+(1/v_Ae_0**2)*(Bol_k)/(2*Me)*dlnB(x)*Temperature_per[l]+(1/v_Ae_0**2)*(2*Bol_k)/(Me*x)*Temperature_pal[r]#+(1/(cos(x)*Density_next[l]))*(Density_next[l]*Bulk_next[l]-Density_pre[l]*Bulk_pre[l])/(10*delt)#+(Bulk_next[l]/cos(x))*dU_solar(x)#+Bulk_next[l]*(dU_solar(x)/cos(x)+U_solar(x)*dcos_1(x))#+(U_solar(x)/cos(x))*Bulk_next[l]/x#+(U_solar(x)/(cos(x)*Density_next[l]))*(Density_next[l]*Bulk_next[l]-Density_next[l-1]*Bulk_next[l-1])/delz
 
 
 #for R in range(Nr):
@@ -494,9 +494,9 @@ def Matrix_alpha(R,M):
            if R==0:
               alpha[i,j] =0*(Fz/4)*(U_solar(z[R])+pal_v[i]*cos(z[R])) if j==i else 0
            elif R==Nr-1:
-              alpha[i,j] =(Fz/4)*(U_solar(z[R])+pal_v[i]*cos(z[R])) if j==i else 0
+              alpha[i,j] =0#(Fz/4)*(U_solar(z[R])+pal_v[i]*cos(z[R])) if j==i else 0
            else:
-              alpha[i,j] =(Fz/4)*(U_solar(z[R])+pal_v[i]*cos(z[R])) if j==i else 0 #*rect((2.*(t[1]-t[0])/z[R])*f_1[M*Nv+i,R]/Mf[0]+Fz*0.5*(f_1[M*Nv+i,R+1]/Mf[0]-f_1[M*Nv+i,R-1]/Mf[0]))     return alpha
+              alpha[i,j] =0#(Fz/4)*(U_solar(z[R])+pal_v[i]*cos(z[R])) if j==i else 0 #*rect((2.*(t[1]-t[0])/z[R])*f_1[M*Nv+i,R]/Mf[0]+Fz*0.5*(f_1[M*Nv+i,R+1]/Mf[0]-f_1[M*Nv+i,R-1]/Mf[0]))     return alpha
     return alpha
 
 def Matrix_AA(R):
@@ -622,7 +622,7 @@ X2,Y2 = np.meshgrid(pal_v,per_v)
 cont_lev = np.linspace(-10,0,25)
 
 solu1=np.zeros(shape = (Nv, Nv))
-
+solu2=np.zeros(shape = (Nv))
 #f_1 = np.load('data_next.npy')
 
 l=10
@@ -1066,6 +1066,30 @@ for p in range(1):
                    #plt.text(pal_v[Nv-10],pal_v[Nv-5], r'$Nr=$' "%.2f" % Nr, fontsize=8)
                    plt.colorbar(label=r'$Log(F/F_{MAX})$')
                    plt.savefig(f'{path_current}r=34/{k}.png')
+                   plt.clf()
+                   plt.close()
+
+                   for i in range(Nv):
+                        solu2[i]=np.log10(f_1[(1)*(Nv)*(Nv)+(15)*Nv+i]/np.max(f_1))
+                   fig = plt.figure()
+                   fig.set_dpi(500)
+                   plt.plot(pal_v,solu2,color='k',label=r'$r/r_s=$' "%.2f" % z[1]);
+                   plt.legend(loc='upper right')
+                   plt.grid()
+                   ax = plt.gca()
+                   ax.spines['left'].set_position('center')
+                   ax.spines['right'].set_color('none')
+                   ax.spines['top'].set_color('none')
+                   ax.xaxis.set_ticks_position('bottom')
+                   ax.yaxis.set_ticks_position('left')
+                   ax.set_yticks([-8,-6,-4,-2,-0])
+                   plt.text(-2*delv,-8.7,r'$\mathcal{v}_\parallel/\mathcal{v}_{Ae0}$', fontsize=12)
+                   plt.text(-2*delv,2*delv,r'$Log(F/F_{MAX})$', fontsize=12)
+                   plt.ylim([-8, 0])
+                   plt.xlim([-Mv, Mv])
+                   plt.rc('font', size=8)
+                   plt.tick_params(labelsize=8)
+                   plt.savefig(f'{path_current}1D/{k}.png')
                    plt.clf()
                    plt.close()
             else:
