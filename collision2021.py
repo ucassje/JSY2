@@ -731,6 +731,16 @@ for p in range(1):
                                             if f_1[(r)*(Nv)*(Nv)+j*Nv+i]<0:
                                                     f_1[(r)*(Nv)*(Nv)+j*Nv+i]=mini
 
+            f_temp1=np.zeros(shape = (Nr*Nv**2, 1))
+            f_temp1[:,:]=f_1[:,:]
+            for r in range(Nr):                                             #Von neumann boundary condition for v-derivative
+                if r>0:
+                        for j in range(Nv):                      
+                                for i in range(Nv):
+                                        if pal_v[i]>0 and abs(per_v[j])>2 and i!=Nv-1 and f_1[(r)*(Nv)*(Nv)+(j)*Nv]>f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-1]:
+                                                f_temp1[(r)*(Nv)*(Nv)+j*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-1]*(f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-1]/f_1[(r)*(Nv)*(Nv)+(j)*Nv+i-2])#f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i+1]*(f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i+1]/f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+2]) #4*f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i+1]+4*f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i+1]+4*f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+3]-4*f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+2]-4*f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+1]-f_1[(r)*(Nv)*(Nv)+(j+2)*Nv+i+2]-f_1[(r)*(Nv)*(Nv)+(j-2)*Nv+i+2]-f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+4]#2*f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+1]-f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+2] #np.max(f_1)*10**(2*np.log10(f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+1]/np.max(f_1))-np.log10(f_1[(r)*(Nv)*(Nv)+(j)*Nv+i+2]/np.max(f_1)))    #np.max(f_1)*10**((pal_v[i]-pal_v[i+2])/(pal_v[i+2]-pal_v[i+1]))*(np.log10(f_1[(r)*(Nv)*(Nv)+j*Nv+i+2]/np.max(f_1))-np.log10(f_1[(r)*(Nv)*(Nv)+j*Nv+i+1]/np.max(f_1)))+np.log10(f_1[(r)*(Nv)*(Nv)+j*Nv+i+2]/np.max(f_1))                               #((pal_v[i]-pal_v[i+2])/(pal_v[i+2]-pal_v[i+1]))*(f_1[(r)*(Nv)*(Nv)+j*Nv+i+2]-f_1[(r)*(Nv)*(Nv)+j*Nv+i+1])+f_1[(r)*(Nv)*(Nv)+j*Nv+i+2]                                                                                                                                                                 
+            f_1[:,:]=f_temp1[:,:]
+
             #f_temp4=np.zeros(shape = (Nr*Nv**2, 1))
             #f_temp4[:,:]=f_1[:,:]                                
             #for r in range(Nr-1):
@@ -1200,7 +1210,7 @@ for r in range(Nr):
 
 for r in range(Nr):
    for i in range(Nv):
-        solu2[i]=np.log10(f_1[(r)*(Nv)*(Nv)+(17)*Nv+i]/np.max(f_1))
+        solu2[i]=np.log10(f_1[(r)*(Nv)*(Nv)+(15)*Nv+i]/np.max(f_1))
    fig = plt.figure()
    fig.set_dpi(500)
    plt.plot(pal_v,solu2,color='k',label=r'$r/r_s=$' "%.2f" % z[r]);
@@ -1225,7 +1235,7 @@ for r in range(Nr):
 
 for r in range(Nr):
    for j in range(Nv):
-        solu4[j]=np.log10(f_1[(r)*(Nv)*(Nv)+(j)*Nv+17]/np.max(f_1))
+        solu4[j]=np.log10(f_1[(r)*(Nv)*(Nv)+(j)*Nv+15]/np.max(f_1))
    fig = plt.figure()
    fig.set_dpi(500)
    plt.plot(per_v,solu4,color='k',label=r'$r/r_s=$' "%.2f" % z[r]);
