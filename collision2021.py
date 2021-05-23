@@ -26,12 +26,12 @@ path_lab="/disk/plasma4/syj2/Code/JSY2/"
 # path_current=path_home
 path_current=path_lab
 def n_0(r):
-        return 1*(215/r)**2
+        return 5*(215/r)**2
 
 def B_0(r):
-        return 1*(215/r)**2
+        return 5*(215/r)**2
 
-v_Ae_0=(10*B_0(215)*10**(-9))/(4.*np.pi*10**(-7)*9.1094*10**(-31)*10*n_0(215)*10**6)**0.5
+v_Ae_0=(B_0(215)*10**(-9))/(4.*np.pi*10**(-7)*9.1094*10**(-31)*n_0(215)*10**6)**0.5
 print(v_Ae_0)
 q=1.6022*(10**(-19))
 Me=9.1094*(10**(-31))
