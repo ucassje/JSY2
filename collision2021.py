@@ -623,7 +623,7 @@ cont_lev = np.linspace(-10,0,25)
 
 solu1=np.zeros(shape = (Nv, Nv))
 
-f_1 = np.load('data_next.npy')
+#f_1 = np.load('data_next.npy')
 
 l=10
 t=0
