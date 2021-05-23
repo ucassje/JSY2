@@ -48,9 +48,9 @@ r_s=696340000.
 z=np.linspace(i_solar_r, f_solar_r, Nr)
 delz=z[1]-z[0]
 print(delz)
-Mt=3600
-Nt=3600*v_Ae_0/r_s
-t=np.linspace(0, Mt, Nt-1)
+Mt=3600*v_Ae_0/r_s
+Nt=3600
+t=np.linspace(0, Mt, Nt)
 delt=(t[1]-t[0])            #time step
 print(delt)
 Fv=delt/delv
