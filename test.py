@@ -224,10 +224,10 @@ for r in range(Nr):
        for i in range(Nv):
                if f_1[(r)*(Nv)*(Nv)+(j)*Nv+i]/np.max(f_1)>1:
                        solu1[j,i]=0
-               elif f_1[(r)*(Nv)*(Nv)+(j)*Nv+i]/np.max(f_1)>10**(-8):
+               elif f_1[(r)*(Nv)*(Nv)+(j)*Nv+i]/np.max(f_1)>10**(-7):
                        solu1[j,i]=np.log10(f_1[(r)*(Nv)*(Nv)+(j)*Nv+i]/np.max(f_1))
                else:
-                       solu1[j,i]=-8
+                       solu1[j,i]=-10
    fig = plt.figure()
    fig.set_dpi(500)
    plt.contourf(X2, Y2,solu1, cont_lev,cmap='Blues');
