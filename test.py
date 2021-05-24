@@ -18,13 +18,13 @@ from lmfit import Parameters, fit_report, minimize
 #from lmfit import Model
 import lmfit
 
-Nv=30  #velocity step number
+Nv=31  #velocity step number
 i_solar_r=5 #10
 f_solar_r=20 #30
-path_home="/Users/user/Desktop/JSY2/"
+path_home="/Users/user/Desktop/test/"
 path_lab="/disk/plasma4/syj2/Code/JSY2/"
-# path_current=path_home
-path_current=path_lab
+path_current=path_home
+#path_current=path_lab
 def n_0(r):
         return 5*(215/r)**2
 
@@ -217,7 +217,7 @@ solu4=np.zeros(shape = (Nv))
 cont_lev = np.linspace(-10,0,25)
 difference=np.zeros(shape = ((Nr)*(Nv)*(Nv), 1))
 
-
+f_1 = np.load('data_next.npy')
 
 for r in range(Nr):
    for j in range(Nv):
