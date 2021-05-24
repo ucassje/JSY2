@@ -18,20 +18,20 @@ from lmfit import Parameters, fit_report, minimize
 #from lmfit import Model
 import lmfit
 
-Nv=34  #velocity step number
+Nv=30  #velocity step number
 i_solar_r=5 #10
 f_solar_r=20 #30
-path_home="/Users/user/Desktop/test/"
+path_home="/Users/user/Desktop/JSY2/"
 path_lab="/disk/plasma4/syj2/Code/JSY2/"
-path_current=path_home
-#path_current=path_lab
+# path_current=path_home
+path_current=path_lab
 def n_0(r):
-        return 1*(215/r)**2
+        return 5*(215/r)**2
 
 def B_0(r):
-        return 1*(215/r)**2
+        return 5*(215/r)**2
 
-v_Ae_0=(10*B_0(215)*10**(-9))/(4.*np.pi*10**(-7)*9.1094*10**(-31)*10*n_0(215)*10**6)**0.5
+v_Ae_0=(B_0(215)*10**(-9))/(4.*np.pi*10**(-7)*9.1094*10**(-31)*n_0(215)*10**6)**0.5
 print(v_Ae_0)
 q=1.6022*(10**(-19))
 Me=9.1094*(10**(-31))
@@ -48,16 +48,16 @@ r_s=696340000.
 z=np.linspace(i_solar_r, f_solar_r, Nr)
 delz=z[1]-z[0]
 print(delz)
-Mt=0.01
-Nt=3
-t=np.linspace(0, Mt, Nt-1)
-delt=0.5*(t[1]-t[0])            #time step
+Mt=3600*v_Ae_0/r_s
+Nt=3600
+t=np.linspace(0, Mt, Nt)
+delt=(t[1]-t[0])            #time step
 print(delt)
 Fv=delt/delv
 Fvv=delt/(delv)**2
 Fz=delt/delz
 U_f=800000./v_Ae_0
-T_e=15*10**5; #5*(10**(5))
+T_e=10*10**5; #5*(10**(5))
 T_e_back=10*(10**(5));
 Bol_k=1.3807*(10**(-23));
 kappa=2
@@ -70,6 +70,7 @@ G=6.6726*10**(-11)
 M_s=1.989*10**(30)
 print((f_solar_r-i_solar_r)/U_f)
 print(((f_solar_r-i_solar_r)/U_f)/delt)
+
 
 #calculate Beta
 
@@ -131,9 +132,15 @@ for r in range(Nr):
                 for i in range(Nv):
                         f_1[r*(Nv)*(Nv)+j*Nv+i]=Kappa_Initial_Core(pal_v[i],per_v[j],z[r])
 
+Debye=np.zeros(shape = (Nr))
+for r in range(Nr):
+        Debye[r]=(epsilon*Bol_k*temperature(z[r])/(n(z[r])*q**2))**0.5
 
+Col_para=np.zeros(shape = (Nr))
+for r in range(Nr):
+        Col_para[r]=np.log(12*np.pi*n(z[r])*Debye[r]**3)
 
-
+print(Col_para)
 
 
 #np.set_printoptions(threshold=np.inf)
