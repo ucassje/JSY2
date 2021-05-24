@@ -17,7 +17,7 @@ from numpy import exp, loadtxt, pi, sqrt
 from lmfit import Parameters, fit_report, minimize
 #from lmfit import Model
 import lmfit
-Nv=30  #velocity step number
+Nv=31  #velocity step number
 i_solar_r=5 #10
 f_solar_r=20 #30
 path_home="/Users/user/Desktop/JSY2/"
@@ -47,10 +47,10 @@ r_s=696340000.
 z=np.linspace(i_solar_r, f_solar_r, Nr)
 delz=z[1]-z[0]
 print(delz)
-Mt=0.01
-Nt=3
-t=np.linspace(0, Mt, Nt-1)
-delt=0.5*(t[1]-t[0])            #time step
+Mt=3600*v_Ae_0/r_s
+Nt=3600
+t=np.linspace(0, Mt, Nt)
+delt=(t[1]-t[0])            #time step
 print(delt)
 Fv=delt/delv
 Fvv=delt/(delv)**2
@@ -58,7 +58,7 @@ Fz=delt/delz
 U_f=800000./v_Ae_0
 T_e=10*10**5; #5*(10**(5))
 T_e_back=10*(10**(5));
-Bol_k=1.3807*(10**(-23))
+Bol_k=1.3807*(10**(-23));
 kappa=2
 v_th_e=((2.*kappa-3)*Bol_k*T_e/(kappa*Me))**0.5/v_Ae_0
 v_th_p=((2.*kappa-3)*Bol_k*T_e/(kappa*Mp))**0.5/v_Ae_0
@@ -145,10 +145,10 @@ for r in range(Nr):
     print(r)
     if r==0:
             p = lmfit.Parameters()
-            p.add_many(('nc', 1,True,0.5,1),('ns', 0.01,True,0,0.5), ('Tc_pal', 10*10**5,True,1*10**5,10*10**5), ('Tc_per', 10*10**5,True,1*10**5,10*10**5), ('Ts_pal', 1*10**5,True,1*10**5,20*10**5), ('Ts_per', 1*10**5,True,1*10**5,20*10**5), ('Uc',0,True,-0.7,0),('Us',4,True,0,6),('kappac',2,True,2,50),('kappas',2,True,2,50))
+            p.add_many(('nc', 1,True,0.5,1),('ns', 0.01,True,0,0.5), ('Tc_pal', 10*10**5,True,1*10**5,10*10**5), ('Tc_per', 10*10**5,True,1*10**5,10*10**5), ('Ts_pal', 1*10**5,True,1*10**5,20*10**5), ('Ts_per', 1*10**5,True,1*10**5,20*10**5), ('Uc',0,True,-0.7,0),('Us',4,True,0,7),('kappac',2,True,2,50),('kappas',2,True,2,50))
     else:                          #,('Us',0,True,0,1.5) , ('Uc',0,True,-0.4,0) 
             p = lmfit.Parameters()
-            p.add_many(('nc', nc[r-1],True,0.7,1),('ns', ns[r-1],True,0,0.3), ('Tc_pal', Tc_pal[r-1],True,1*10**5,10*10**5), ('Tc_per', Tc_per[r-1],True,1*10**5,10*10**5), ('Ts_pal', Ts_pal[r-1],True,1*10**5,20*10**5), ('Ts_per', Ts_per[r-1],True,1*10**5,20*10**5), ('Uc',Uc[r-1],True,-0.7,0),('Us',Us[r-1],True,0,4),('kappac',kappac[r-1],True,4,50),('kappas',kappas[r-1],True,2,50))
+            p.add_many(('nc', nc[r-1],True,0.7,1),('ns', ns[r-1],True,0,0.3), ('Tc_pal', Tc_pal[r-1],True,1*10**5,10*10**5), ('Tc_per', Tc_per[r-1],True,1*10**5,10*10**5), ('Ts_pal', Ts_pal[r-1],True,1*10**5,20*10**5), ('Ts_per', Ts_per[r-1],True,1*10**5,20*10**5), ('Uc',Uc[r-1],True,-0.7,0),('Us',Us[r-1],True,0,7),('kappac',kappac[r-1],True,4,50),('kappas',kappas[r-1],True,2,50))
                                    #,('Us',Us,True,0,1.5) , ('Uc',Uc,True,-0.4,0.4) 
     f_11=np.zeros(shape = (Nv**2, 1))
     for j in range(Nv):
