@@ -18,7 +18,7 @@ from lmfit import Parameters, fit_report, minimize
 #from lmfit import Model
 import lmfit
 
-Nv=31  #velocity step number
+Nv=61  #velocity step number
 i_solar_r=5 #10
 f_solar_r=20 #30
 path_home="/Users/user/Desktop/JSY2/"
@@ -701,7 +701,7 @@ for k in range(timestep):
                                         if f_1[j*Nv+i,r]<0:
                                                 f_1[j*Nv+i,r]=mini
             
-            
+np.save('data_next.npy', f_1)            
 
             
 
