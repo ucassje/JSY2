@@ -598,7 +598,7 @@ for k in range(timestep):
                                 for i in range(Nv):
                                         if f_temp5[j*Nv+i,r]<0:
                                                 f_temp5[j*Nv+i,r]=10**(50)
-        mini=np.min(a.all(f_temp5))
+        mini=np.min(all(f_temp5))
 
         for r in range(Nr):
                 if r>0:
