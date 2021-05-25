@@ -645,7 +645,7 @@ for k in range(timestep):
         f_temp1[:,:]=f_1[:,:]
         for r in range(Nr):                                             #Von neumann boundary condition for v-derivative
             if r>0:
-                f_1[0*Nv+0,r]=2*f_1[(0)*Nv+0+1,r]-f_1[(j)*Nv+0+2,r]
+                f_1[0*Nv+0,r]=2*f_1[(0)*Nv+0+1,r]-f_1[(0)*Nv+0+2,r]
                 f_1[0*Nv+Nv-1,r]=2*f_1[(0)*Nv+Nv-1-1,r]-f_1[(0)*Nv+Nv-1-2,r]
                 f_1[(Nv-1)*Nv+0,r]=2*f_1[(Nv-1)*Nv+0+1,r]-f_1[(Nv-1)*Nv+0+2,r]
                 f_1[(Nv-1)*Nv+Nv-1,r]=2*f_1[(Nv-1)*Nv+Nv-1-1,r]-f_1[(Nv-1)*Nv+Nv-1-2,r]
