@@ -574,6 +574,10 @@ def Matrix_QQ(R):
     return AA
 
 
+
+
+f_1 = np.load('data_next.npy')
+
 #AA_1 = inv(AA)
 #AQ=dot(AA_1,QQ)
 #AalphaA=dot(AA_1,alphaA)
