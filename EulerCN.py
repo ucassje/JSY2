@@ -552,7 +552,8 @@ for r in range(Nr):
 f_temp=np.zeros(shape = (Nv**2, Nr))
 f_temp[:,:]=f_1[:,:]
 kl=50
-
+l=10
+t=0
 
 X2,Y2 = np.meshgrid(pal_v,per_v)
 cont_lev = np.linspace(-10,0,25)
