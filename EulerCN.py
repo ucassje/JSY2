@@ -660,7 +660,7 @@ for k in range(timestep):
                                 for i in range(Nv):
                                         if f_temp5[j*Nv+i,r]<0:
                                                 f_temp5[j*Nv+i,r]=10**(50)
-        mini=min(f_temp5)
+        mini=np.amin(f_temp5)
 
         for r in range(Nr):
                 if r>0:
@@ -689,10 +689,10 @@ for k in range(timestep):
                 print("H")
                 for j in range(Nv):
                     for i in range(Nv):
-                            if f_1[(j)*Nv+i,1]/np.max(f_1)>1:
+                            if f_1[(j)*Nv+i,1]/np.amax(f_1)>1:
                                     solu1[j,i]=0
-                            elif f_1[(j)*Nv+i,1]/np.max(f_1)>10**(-10):
-                                    solu1[j,i]=np.log10(f_1[(j)*Nv+i,1]/np.max(f_1))
+                            elif f_1[(j)*Nv+i,1]/np.amax(f_1)>10**(-10):
+                                    solu1[j,i]=np.log10(f_1[(j)*Nv+i,1]/np.amax(f_1))
                             else:
                                     solu1[j,i]=-10
                 fig = plt.figure()
@@ -724,10 +724,10 @@ for k in range(timestep):
 
                 for j in range(Nv):
                     for i in range(Nv):
-                            if f_1[(j)*Nv+i,15]/np.max(f_1)>1:
+                            if f_1[(j)*Nv+i,15]/np.amax(f_1)>1:
                                     solu1[j,i]=0
-                            elif f_1[(j)*Nv+i,15]/np.max(f_1)>10**(-10):
-                                    solu1[j,i]=np.log10(f_1[(j)*Nv+i,15]/np.max(f_1))
+                            elif f_1[(j)*Nv+i,15]/np.amax(f_1)>10**(-10):
+                                    solu1[j,i]=np.log10(f_1[(j)*Nv+i,15]/np.amax(f_1))
                             else:
                                     solu1[j,i]=-10
                 fig = plt.figure()
@@ -760,10 +760,10 @@ for k in range(timestep):
 
                 for j in range(Nv):
                     for i in range(Nv):
-                            if f_1[(j)*Nv+i,29]/np.max(f_1)>1:
+                            if f_1[(j)*Nv+i,29]/np.amax(f_1)>1:
                                     solu1[j,i]=0
-                            elif f_1[(j)*Nv+i,29]/np.max(f_1)>10**(-10):
-                                    solu1[j,i]=np.log10(f_1[(j)*Nv+i,29]/np.max(f_1))
+                            elif f_1[(j)*Nv+i,29]/np.amax(f_1)>10**(-10):
+                                    solu1[j,i]=np.log10(f_1[(j)*Nv+i,29]/np.amax(f_1))
                             else:
                                     solu1[j,i]=-10
                 fig = plt.figure()
