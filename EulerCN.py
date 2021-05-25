@@ -701,17 +701,6 @@ for k in range(timestep):
                                         if f_1[j*Nv+i,r]<0:
                                                 f_1[j*Nv+i,r]=mini
             
-np.save('data_next.npy', f_1)            
-
-            
-
-
-        
-
-
-
-            
-
 
 
             
@@ -866,6 +855,6 @@ np.save('data_next.npy', f_1)
                 l=l+1 
                    
 
-
+np.save('data_next.npy', f_1)          
 
             
