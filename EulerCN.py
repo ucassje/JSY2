@@ -574,9 +574,9 @@ for k in range(timestep):
 
         for r in range(Nr):
             if r==0:
-                f_1[:,r]=f_initial[j*Nv+i,r]
+                f_1[:,r]=f_initial[:,r]
             elif r==Nr-1:
-                f_1[:,r]=f_pre[j*Nv+i,r]
+                f_1[:,r]=f_pre[:,r]
             else:
                 f_1[:,r]=dot(AQ[:,:,r],f_pre[:,r])+dot(AalphaA[:,:,r],f_pre[:,r+1])-dot(AalphaA[:,:,r],f_pre[:,r-1])
             
