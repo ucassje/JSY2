@@ -441,33 +441,37 @@ def Matrix_alpha(R,M):
               alpha[i,j] =(Fz/2)*(U_solar(z[R])+pal_v[i]*cos(z[R])) if j==i else 0 #*rect((2.*(t[1]-t[0])/z[R])*f_1[M*Nv+i,R]/Mf[0]+Fz*0.5*(f_1[M*Nv+i,R+1]/Mf[0]-f_1[M*Nv+i,R-1]/Mf[0]))     return alpha
     return alpha
 
-AA=np.zeros(((Nv)*(Nv),(Nv)*(Nv)))
-for a in range(Nv-1):
-	for b in range(Nv-1):
-		if a==b:
-			AA[a*Nv:(a+1)*Nv,(b+1)*Nv:(b+2)*Nv]=Matrix_B(R,a)
-for a in range(Nv-2):
-	for b in range(Nv-2):
-		if a==b:
-			AA[a*Nv:(a+1)*Nv,(b+2)*Nv:(b+3)*Nv]=Matrix_C(R,a)
-for a in range(Nv-1):
-	for b in range(Nv-1):
-		if a==b:
-			AA[(a+1)*Nv:(a+2)*Nv,(b)*Nv:(b+1)*Nv]=-Matrix_B(R,a+1)
-for a in range(Nv-2):
-	for b in range(Nv-2):
-		if a==b:
-			AA[(a+2)*Nv:(a+3)*Nv,(b)*Nv:(b+1)*Nv]=Matrix_C(R,a+2)
-for a in range(Nv):
-	for b in range(Nv):
-		if a==b:
-			AA[a*Nv:(a+1)*Nv,b*Nv:(b+1)*Nv]=Matrix_A(R,a)
+def Matrix_AA(R):
+    AA=np.zeros(((Nv)*(Nv),(Nv)*(Nv)))
+    for a in range(Nv-1):
+	    for b in range(Nv-1):
+		    if a==b:
+			    AA[a*Nv:(a+1)*Nv,(b+1)*Nv:(b+2)*Nv]=Matrix_B(R,a)
+    for a in range(Nv-2):
+	    for b in range(Nv-2):
+		    if a==b:
+			    AA[a*Nv:(a+1)*Nv,(b+2)*Nv:(b+3)*Nv]=Matrix_C(R,a)
+    for a in range(Nv-1):
+	    for b in range(Nv-1):
+		    if a==b:
+			    AA[(a+1)*Nv:(a+2)*Nv,(b)*Nv:(b+1)*Nv]=-Matrix_B(R,a+1)
+    for a in range(Nv-2):
+	    for b in range(Nv-2):
+		    if a==b:
+			    AA[(a+2)*Nv:(a+3)*Nv,(b)*Nv:(b+1)*Nv]=Matrix_C(R,a+2)
+    for a in range(Nv):
+	    for b in range(Nv):
+		    if a==b:
+			    AA[a*Nv:(a+1)*Nv,b*Nv:(b+1)*Nv]=Matrix_A(R,a)
+    return AA
 
-alphaA=np.zeros(((Nv)*(Nv),(Nv)*(Nv)))
-for a in range(Nv):
-	for b in range(Nv):
-		if a==b:
-			alphaA[a*Nv:(a+1)*Nv,b*Nv:(b+1)*Nv]=Matrix_alpha(R,a)
+def Matrix_alphaA(R):
+    alphaA=np.zeros(((Nv)*(Nv),(Nv)*(Nv)))
+    for a in range(Nv):
+	    for b in range(Nv):
+		    if a==b:
+			    alphaA[a*Nv:(a+1)*Nv,b*Nv:(b+1)*Nv]=Matrix_alpha(R,a)
+    return alphaA
 
 
 
@@ -511,33 +515,37 @@ def Matrix_Q(R,M):
     return A
 
 
-QQ=np.zeros(((Nv)*(Nv),(Nv)*(Nv)))
-for a in range(Nv-1):
-	for b in range(Nv-1):
-		if a==b:
-			QQ[a*Nv:(a+1)*Nv,(b+1)*Nv:(b+2)*Nv]=-Matrix_B(R,a)
-for a in range(Nv-2):
-	for b in range(Nv-2):
-		if a==b:
-			QQ[a*Nv:(a+1)*Nv,(b+2)*Nv:(b+3)*Nv]=-Matrix_C(R,a)
-for a in range(Nv-1):
-	for b in range(Nv-1):
-		if a==b:
-			QQ[(a+1)*Nv:(a+2)*Nv,(b)*Nv:(b+1)*Nv]=Matrix_B(R,a+1)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
-for a in range(Nv-2):
-	for b in range(Nv-2):
-		if a==b:
-			QQ[(a+2)*Nv:(a+3)*Nv,(b)*Nv:(b+1)*Nv]=-Matrix_C(R,a+2)
-for a in range(Nv):
-	for b in range(Nv):
-		if a==b:
-			QQ[a*Nv:(a+1)*Nv,b*Nv:(b+1)*Nv]=Matrix_Q(R,a)
+def Matrix_QQ(R):
+    AA=np.zeros(((Nv)*(Nv),(Nv)*(Nv)))
+    for a in range(Nv-1):
+	    for b in range(Nv-1):
+		    if a==b:
+			    AA[a*Nv:(a+1)*Nv,(b+1)*Nv:(b+2)*Nv]=-Matrix_B(R,a)
+    for a in range(Nv-2):
+	    for b in range(Nv-2):
+		    if a==b:
+			    AA[a*Nv:(a+1)*Nv,(b+2)*Nv:(b+3)*Nv]=-Matrix_C(R,a)
+    for a in range(Nv-1):
+	    for b in range(Nv-1):
+		    if a==b:
+			    AA[(a+1)*Nv:(a+2)*Nv,(b)*Nv:(b+1)*Nv]=Matrix_B(R,a+1)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+    for a in range(Nv-2):
+	    for b in range(Nv-2):
+		    if a==b:
+			    AA[(a+2)*Nv:(a+3)*Nv,(b)*Nv:(b+1)*Nv]=-Matrix_C(R,a+2)
+    for a in range(Nv):
+	    for b in range(Nv):
+		    if a==b:
+			    AA[a*Nv:(a+1)*Nv,b*Nv:(b+1)*Nv]=Matrix_Q(R,a)
+    return AA
 
 
-AA_1 = inv(AA)
-AQ=dot(AA_1,QQ)
-AalphaA=dot(AA_1,alphaA)
-
+#AA_1 = inv(AA)
+#AQ=dot(AA_1,QQ)
+#AalphaA=dot(AA_1,alphaA)
+for r in range(Nr):
+    AQ[r]=dot(inv(Matrix_AA(r)),Matrix_QQ(r))
+    AalphaA[r]=dot(inv(Matrix_AA(r)),Matrix_alphaA(r))
 
 f_temp=np.zeros(shape = (Nv**2, Nr))
 f_temp[:,:]=f_1[:,:]
@@ -567,7 +575,7 @@ for k in range(timestep):
             elif r==Nr-1:
                 f_1[:,r]=f_pre[j*Nv+i,r]
             else:
-                f_1[:,r]=dot(AQ,f_pre[:,r])+dot(AalphaA,f_pre[:,r+1])-dot(AalphaA,f_pre[:,r-1])
+                f_1[:,r]=dot(AQ[r],f_pre[:,r])+dot(AalphaA[r],f_pre[:,r+1])-dot(AalphaA[r],f_pre[:,r-1])
             
         f_temp4=np.zeros(shape = (Nv**2, Nr))
         f_temp4[:,:]=f_1[:,:]                                
