@@ -543,9 +543,11 @@ def Matrix_QQ(R):
 #AA_1 = inv(AA)
 #AQ=dot(AA_1,QQ)
 #AalphaA=dot(AA_1,alphaA)
+AQ=np.zeros(((Nv)*(Nv),(Nv)*(Nv),Nr))
+AalphaA=np.zeros(((Nv)*(Nv),(Nv)*(Nv),Nr))
 for r in range(Nr):
-    AQ[r]=dot(inv(Matrix_AA(r)),Matrix_QQ(r))
-    AalphaA[r]=dot(inv(Matrix_AA(r)),Matrix_alphaA(r))
+    AQ[:,:,r]=dot(inv(Matrix_AA(r)),Matrix_QQ(r))
+    AalphaA[:,:,r]=dot(inv(Matrix_AA(r)),Matrix_alphaA(r))
 
 f_temp=np.zeros(shape = (Nv**2, Nr))
 f_temp[:,:]=f_1[:,:]
@@ -575,7 +577,7 @@ for k in range(timestep):
             elif r==Nr-1:
                 f_1[:,r]=f_pre[j*Nv+i,r]
             else:
-                f_1[:,r]=dot(AQ[r],f_pre[:,r])+dot(AalphaA[r],f_pre[:,r+1])-dot(AalphaA[r],f_pre[:,r-1])
+                f_1[:,r]=dot(AQ[:,:,r],f_pre[:,r])+dot(AalphaA[:,:,r],f_pre[:,r+1])-dot(AalphaA[:,:,r],f_pre[:,r-1])
             
         f_temp4=np.zeros(shape = (Nv**2, Nr))
         f_temp4[:,:]=f_1[:,:]                                
