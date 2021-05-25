@@ -731,8 +731,17 @@ for p in range(1):
                                             if f_1[(r)*(Nv)*(Nv)+j*Nv+i]<0:
                                                     f_1[(r)*(Nv)*(Nv)+j*Nv+i]=mini
 
-
-
+            f_temp1=np.zeros(shape = (Nr*Nv**2, 1))
+            f_temp1[:,:]=f_1[:,:]
+            for r in range(Nr):                                             
+                if r>0:
+                        for j in range(Nv):                      
+                                for i in range(Nv):
+                                        if per_v[j]>0 and f_1[(r)*(Nv)*(Nv)+(j)*Nv+i]>f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i]:
+                                                f_temp1[(r)*(Nv)*(Nv)+j*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j-1)*Nv+i]**2/f_1[(r)*(Nv)*(Nv)+(j-2)*Nv+i]
+                                        if per_v[j]<0 and f_1[(r)*(Nv)*(Nv)+(j)*Nv+i]>f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i]:
+                                                f_temp1[(r)*(Nv)*(Nv)+j*Nv+i]=f_1[(r)*(Nv)*(Nv)+(j+1)*Nv+i]**2/f_1[(r)*(Nv)*(Nv)+(j+2)*Nv+i]
+            f_1[:,:]=f_temp1[:,:]
 
             #f_temp1=np.zeros(shape = (Nr*Nv**2, 1))
             #f_temp1[:,:]=f_1[:,:]
