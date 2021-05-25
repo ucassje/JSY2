@@ -549,8 +549,8 @@ for r in range(Nr):
     AQ[:,:,r]=dot(inv(Matrix_AA(r)),Matrix_QQ(r))
     AalphaA[:,:,r]=dot(inv(Matrix_AA(r)),Matrix_alphaA(r))
 
-f_temp=np.zeros(shape = (Nv**2, Nr))
-f_temp[:,:]=f_1[:,:]
+f_initial=np.zeros(shape = (Nv**2, Nr))
+f_initial[:,:]=f_1[:,:]
 kl=50
 l=10
 t=0
@@ -574,7 +574,7 @@ for k in range(timestep):
 
         for r in range(Nr):
             if r==0:
-                f_1[:,r]=f_pre[j*Nv+i,r]
+                f_1[:,r]=f_initial[j*Nv+i,r]
             elif r==Nr-1:
                 f_1[:,r]=f_pre[j*Nv+i,r]
             else:
