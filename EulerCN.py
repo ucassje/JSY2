@@ -618,7 +618,7 @@ for r in range(Nr):
        for i in range(Nv):
                if f_1[(j)*Nv+i,r]/np.amax(f_1)>1:
                        solu1[j,i]=0
-               elif f_1[(j)*Nv+i,r]/np.amax(f_1)>10**(-8):
+               elif f_1[(j)*Nv+i,r]/np.amax(f_1)>10**(-6):
                        solu1[j,i]=np.log10(f_1[(j)*Nv+i,r]/np.amax(f_1))
                else:
                        solu1[j,i]=-10
