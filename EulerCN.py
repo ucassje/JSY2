@@ -582,11 +582,7 @@ def Matrix_QQ(R):
 #AQ=dot(AA_1,QQ)
 #AalphaA=dot(AA_1,alphaA)
 
-AQ=np.zeros(((Nv)*(Nv),(Nv)*(Nv),Nr))
-AalphaA=np.zeros(((Nv)*(Nv),(Nv)*(Nv),Nr))
-for r in range(Nr):
-    AQ[:,:,r]=dot(inv(Matrix_AA(r)),Matrix_QQ(r))
-    AalphaA[:,:,r]=dot(inv(Matrix_AA(r)),Matrix_alphaA(r))
+
 
 f_initial=np.zeros(shape = (Nv**2, Nr))
 f_initial[:,:]=f_1[:,:]
