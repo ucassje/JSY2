@@ -602,13 +602,13 @@ solu2=np.zeros(shape = (Nv))
             
 
 X2,Y2 = np.meshgrid(pal_v,per_v)
-X1,Y1 = np.meshgrid(pal_v_num,per_v_num)
+
 solu1=np.zeros(shape = (Nv, Nv))
 solu2=np.zeros(shape = (Nv))
 solu3=np.zeros(shape = (Nv))
 solu4=np.zeros(shape = (Nv))
 cont_lev = np.linspace(-10,0,25)
-difference=np.zeros(shape = ((Nr)*(Nv)*(Nv), 1))
+
 
 
 
