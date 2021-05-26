@@ -34,10 +34,10 @@ def U_solar2(r):
 
 
 def B_0(r):
-        return 1*(215/r)**2
+        return 5*(215/r)**2
 
 def n_0(r):
-        return 1*(215/r)**2
+        return 5*(215/r)**2
 
 def n(r):
         return n_0(i_solar_r)*(i_solar_r/r)**2
@@ -49,7 +49,7 @@ def dU_solar(x):
         return U_f*(1/40)*(2/(np.exp(x/40.)+np.exp(-x/40.)))**2
 
 def temperature(r):
-        return T_e*(i_solar_r/r)**(0.5)#T_e*np.exp(-(r-i_solar_r)**2/600)#(0.1*T_e-T_e)/(f_solar_r-i_solar_r)*(r-i_solar_r)+T_e #T_e*np.exp(-(r-i_solar_r)**2/600) #-0.75
+        return T_e*(i_solar_r/r)**(0.8)#T_e*np.exp(-(r-i_solar_r)**2/600)#(0.1*T_e-T_e)/(f_solar_r-i_solar_r)*(r-i_solar_r)+T_e #T_e*np.exp(-(r-i_solar_r)**2/600) #-0.75
 
 def lntemperature(r):
         return -(r-i_solar_r)/300#(0.1*T_e-T_e)/(f_solar_r-i_solar_r) #-(r-i_solar_r)/300 #-1.4/(r-2.2)**(1.7)  
@@ -81,7 +81,7 @@ plt.close()
 
 plt.figure(figsize=(20,15))
 plt.plot(z, temperature(z), 'k',linewidth=3.0)
-plt.xlabel('Solar Radii',fontsize=28)
+plt.xlabel(r'$r/r_s$',fontsize=28)
 plt.ylabel('Temperature [$10^6$ K]',fontsize=28)
 plt.grid()
 plt.rc('font', size=35)
@@ -92,15 +92,13 @@ plt.clf()
 plt.close()
 
 plt.figure(figsize=(20,15))
-plt.plot(z, U_solar(z), 'k', linewidth=3.0)
-plt.plot(z, U_solar2(z), 'r', linewidth=3.0)
-plt.plot(z, U_solar3(z), 'b', linewidth=3.0)
+plt.plot(z, U_solar3(z), 'k', linewidth=3.0)
 plt.xlabel(r'$r/r_s$',fontsize=28)
 plt.ylabel('Wind Speed U [km/s]',fontsize=28)
 plt.grid()
 plt.rc('font', size=35)
 plt.tick_params(labelsize=40)
-plt.ticklabel_format(style='sci', axis='y', scilimits=(0,0))
+#plt.ticklabel_format(style='sci', axis='y', scilimits=(0,0))
 plt.savefig(f'{path_current}/wind speed.png')
 plt.clf()
 plt.close()
@@ -119,12 +117,12 @@ plt.close()
 
 
 def B(x):
-        return 10**(-9)*B_0(i_solar_r)*(i_solar_r/x)**2*(1+((x-i_solar_r)*Omega/U_solar(x))**2)**0.5
+        return B_0(i_solar_r)*(i_solar_r/x)**2*(1+((x-i_solar_r)*Omega/U_solar(x))**2)**0.5
 
 plt.figure(figsize=(20,15))
-plt.plot(z, np.log10(B(z)), 'k',linewidth=3.0)
-plt.xlabel('Solar Radii',fontsize=28)
-plt.ylabel('$log_{10}B_z$ [T]',fontsize=28)
+plt.plot(z, B(z), 'k',linewidth=3.0)
+plt.xlabel(r'$r/r_s$',fontsize=28)
+plt.ylabel('$B_z$ [nT]',fontsize=28)
 plt.grid()
 plt.rc('font', size=35)
 plt.tick_params(labelsize=40)

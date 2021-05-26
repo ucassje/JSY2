@@ -17,7 +17,7 @@ from numpy import exp, loadtxt, pi, sqrt
 from lmfit import Parameters, fit_report, minimize
 #from lmfit import Model
 import lmfit
-Nv=31  #velocity step number
+Nv=61  #velocity step number
 i_solar_r=5 #10
 f_solar_r=20 #30
 path_home="/Users/user/Desktop/JSY2/"
@@ -42,7 +42,7 @@ pal_v = np.linspace(-Mv, Mv, Nv)
 per_v = np.linspace(-Mv, Mv, Nv)
 delv=pal_v[1]-pal_v[0]
 print(delv)
-Nr=30      #radial step number
+Nr=50      #radial step number
 r_s=696340000.
 z=np.linspace(i_solar_r, f_solar_r, Nr)
 delz=z[1]-z[0]
@@ -153,7 +153,7 @@ for r in range(Nr):
     f_11=np.zeros(shape = (Nv**2, 1))
     for j in range(Nv):
             for i in range(Nv):
-                    f_11[j*Nv+i]=f_1[r*(Nv)*(Nv)+j*Nv+i]
+                    f_11[j*Nv+i]=f_1[j*Nv+i,r]
 
     maxi=np.max(f_11)
     
@@ -165,7 +165,7 @@ for r in range(Nr):
                 fitting[j*Nv+i]=(v['nc'])*(U_solar(z[0])/U_solar(z[r]))*(r_s**3)*(n(z[r])*10**6)*(v_th_function(v['Tc_pal'])*v_th_function(v['Tc_per'])**2)**(-1)*(2/(np.pi*(2*v['kappac']-3)))**1.5*(gamma(v['kappac']+1)/gamma(v['kappac']-0.5))*(1.+(2/(2*v['kappac']-3))*(((per_v[j])/v_th_function(v['Tc_per']))**2)+(2/(2*v['kappac']-3))*(((pal_v[i]-v['Uc'])/v_th_function(v['Tc_pal']))**2))**(-v['kappac']-1.)+(v['ns'])*(U_solar(z[0])/U_solar(z[r]))*(r_s**3)*(n(z[r])*10**6)*(v_th_function(v['Ts_pal'])*v_th_function(v['Ts_per'])**2)**(-1)*(2/(np.pi*(2*v['kappas']-3)))**1.5*(gamma(v['kappas']+1)/gamma(v['kappas']-0.5))*(1.+(2/(2*v['kappas']-3))*(((per_v[j])/v_th_function(v['Ts_per']))**2)+(2/(2*v['kappas']-3))*(((pal_v[i]-v['Us'])/v_th_function(v['Ts_pal']))**2))**(-v['kappas']-1.)
         fit_maxi=np.max(fitting)
         
-        DataChosen = np.where((f_11/maxi)> 10**(-6));
+        DataChosen = np.where((f_11/maxi)> 10**(-8));
         return np.log10(fitting[DataChosen])-np.log10(f_11[DataChosen]) #np.log10(fitting/fit_maxi)-np.log10(f_11/maxi) 
 
     mi = lmfit.minimize(residual, p, method='nelder', options={'maxiter' : 2000}, nan_policy='omit')
