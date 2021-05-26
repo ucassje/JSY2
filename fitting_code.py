@@ -137,7 +137,7 @@ for r in range(Nr):
               if per_v[j]<0:
                       tempDensity=tempDensity
               else:
-                      tempDensity=tempDensity+2*np.pi*f_1[r*(Nv)*(Nv)+j*Nv+i]*abs(per_v[j])*(pal_v[1]-pal_v[0])**2
+                      tempDensity=tempDensity+2*np.pi*f_1[j*Nv+i,r]*abs(per_v[j])*(pal_v[1]-pal_v[0])**2
    Density[r]=tempDensity/(r_s**3)
 
 
