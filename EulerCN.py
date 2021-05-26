@@ -608,7 +608,7 @@ solu2=np.zeros(shape = (Nv))
 solu3=np.zeros(shape = (Nv))
 solu4=np.zeros(shape = (Nv))
 cont_lev = np.linspace(-10,0,25)
-
+f_1 = np.load('data_next.npy')
 
 
 
