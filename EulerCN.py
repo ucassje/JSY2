@@ -18,7 +18,7 @@ from lmfit import Parameters, fit_report, minimize
 #from lmfit import Model
 import lmfit
 
-Nv=31  #velocity step number
+Nv=61  #velocity step number
 i_solar_r=5 #10
 f_solar_r=20 #30
 path_home="/Users/user/Desktop/JSY2/"
@@ -576,7 +576,7 @@ def Matrix_QQ(R):
 
 
 
-f_1 = np.load('data_next.npy')
+
 
 #AA_1 = inv(AA)
 #AQ=dot(AA_1,QQ)
@@ -600,7 +600,7 @@ solu1=np.zeros(shape = (Nv, Nv))
 solu2=np.zeros(shape = (Nv))
 
 
-timestep=500 #700
+timestep=1000 #700
 Normvalue=np.zeros(shape = (timestep))
 Normvalue_bulk=np.zeros(shape = (timestep))
 for k in range(timestep):
